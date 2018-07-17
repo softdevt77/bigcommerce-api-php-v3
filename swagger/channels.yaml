@@ -4,6 +4,9 @@ info:
   title: "BigCommerce Channels API"
   description: The Channels API enables you to create and manage listings across a BigCommerce merchant's sales channels.
 host: "api.bigcommerce.com"
+tags:
+  - name: Channels
+    description: BigCommerce Channels API Definition.
 schemes:
 - http
 consumes:
@@ -17,6 +20,8 @@ paths:
       Channels are representations of where a merchant could sell their products and services on, whether it be online or in-person. They are what show in the UI when a merchant goes to list products to a Channel, manage its Orders, etc.
     get:
       summary: List all Channels
+      tags:
+        - Channels
       responses:
         200:
           description: Successful Response
@@ -64,6 +69,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Channel'
+      tags:
+        - Channels
       responses:
         200:
           description: ''
@@ -99,6 +106,8 @@ paths:
       Retrieve, update or remove a specific Channel
     get:
       summary: Get Channel
+      tags:
+        - Channels
       responses:
         200:
           description: Successful Response
@@ -130,6 +139,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Channel'
+      tags:
+        - Channels
       responses:
         201:
           description: ''
@@ -155,6 +166,8 @@ paths:
               updated_at: 2018-01-18T08:42:10+00:00
     delete:
       summary: Delete Channel
+      tags:
+        - Channels
       responses:
         204:
           description: |
@@ -170,6 +183,8 @@ paths:
           name: channel_id
           type: integer
           x-example: 1
+      tags:
+        - Channels
       responses:
         200:
           description: Successful Response
@@ -225,6 +240,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Listing'
+      tags:
+        - Channels
       responses:
         201:
           description: ''
@@ -243,6 +260,8 @@ paths:
       Retrieve, update or remove a specific Channel Listing
     get:
       summary: Get Channel Listing
+      tags:
+        - Channels
       responses:
         200:
           description: Successful Response
@@ -256,6 +275,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Listing'
+      tags:
+        - Channels
       responses:
         201:
           description: ''
@@ -263,6 +284,8 @@ paths:
             $ref: '#/definitions/Listing'
     delete:
       summary: Delete Channel Listing
+      tags:
+        - Channels
       responses:
         204:
           description: |
