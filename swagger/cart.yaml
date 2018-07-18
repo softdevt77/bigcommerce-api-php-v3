@@ -62,16 +62,9 @@ paths:
         - Cart
       responses:
         201:
-          description: Returns the object that contains the `redirect_urls`.
+          description: Returns Cart Redirect URLs Response object.
           schema:
-            type: object
-            properties:
-              cart_url:
-                type: string
-                format: url
-              checkout_url:
-                type: string
-                format: url
+            $ref: "#/definitions/CartRedirectUrlsResponse"
 
   /carts/{cartId}/items/{itemId}:
     put:
@@ -284,6 +277,26 @@ definitions:
           $ref: "#/definitions/Cart"
         meta:
           $ref: "#/definitions/Meta"
+  CartRedirectUrlsResponse:
+    description: |
+      Response payload for the BigCommerce API.
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/CartRedirectUrls"
+      meta:
+        $ref: "#/definitions/Meta"
+  CartRedirectUrls:
+    description: |
+      The object that contains the `redirect_urls`.
+    type: object
+    properties:
+      cart_url:
+        type: string
+        format: url
+      checkout_url:
+        type: string
+        format: url
   Cart:
     description: A cart contains a collection of items, prices, discounts, etc.. It does not contain customer-related data.
     type: object
