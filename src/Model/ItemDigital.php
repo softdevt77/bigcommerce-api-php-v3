@@ -56,6 +56,7 @@ class ItemDigital extends BaseItem implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
+        'parent_id' => 'string',
         'variant_id' => 'float',
         'product_id' => 'float',
         'sku' => 'string',
@@ -89,6 +90,7 @@ class ItemDigital extends BaseItem implements ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'parent_id' => 'parent_id',
         'variant_id' => 'variant_id',
         'product_id' => 'product_id',
         'sku' => 'sku',
@@ -118,6 +120,7 @@ class ItemDigital extends BaseItem implements ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'parent_id' => 'setParentId',
         'variant_id' => 'setVariantId',
         'product_id' => 'setProductId',
         'sku' => 'setSku',
@@ -147,6 +150,7 @@ class ItemDigital extends BaseItem implements ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'parent_id' => 'getParentId',
         'variant_id' => 'getVariantId',
         'product_id' => 'getProductId',
         'sku' => 'getSku',
@@ -201,6 +205,7 @@ class ItemDigital extends BaseItem implements ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['parent_id'] = isset($data['parent_id']) ? $data['parent_id'] : null;
         $this->container['variant_id'] = isset($data['variant_id']) ? $data['variant_id'] : null;
         $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
@@ -269,6 +274,27 @@ class ItemDigital extends BaseItem implements ArrayAccess
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets parent_id
+     * @return string
+     */
+    public function getParentId()
+    {
+        return $this->container['parent_id'];
+    }
+
+    /**
+     * Sets parent_id
+     * @param string $parent_id The parent line-item ID.
+     * @return $this
+     */
+    public function setParentId($parent_id)
+    {
+        $this->container['parent_id'] = $parent_id;
 
         return $this;
     }
