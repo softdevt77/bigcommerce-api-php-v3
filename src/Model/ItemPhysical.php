@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ItemPhysical implements ArrayAccess
+class ItemPhysical extends BaseItem implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
