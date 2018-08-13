@@ -1,6 +1,6 @@
 <?php
 /**
- * LineItem
+ * LineItems
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * LineItem Class Doc Comment
+ * LineItems Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class LineItem implements ArrayAccess
+class LineItems implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class LineItem implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'LineItem';
+    protected static $swaggerModelName = 'LineItems';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

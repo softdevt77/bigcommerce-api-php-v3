@@ -333,9 +333,7 @@ definitions:
         items:
           $ref: "#/definitions/AppliedDiscount"
       line_items:
-        type: array
-        items:
-          $ref: "#/definitions/LineItem"
+        $ref: "#/definitions/LineItems"
       created_time:
         type: string
         format: ISO-8601
@@ -352,7 +350,7 @@ definitions:
         type: string
         format: ISO-4217
         description: "ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)"
-  LineItem:
+  LineItems:
     type: object
     required:
       - physical_items

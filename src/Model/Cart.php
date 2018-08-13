@@ -66,7 +66,7 @@ class Cart implements ArrayAccess
         'cart_amount' => 'float',
         'coupons' => '\BigCommerce\Api\v3\Model\AppliedCoupon[]',
         'discounts' => '\BigCommerce\Api\v3\Model\AppliedDiscount[]',
-        'line_items' => '\BigCommerce\Api\v3\Model\LineItem[]',
+        'line_items' => '\BigCommerce\Api\v3\Model\LineItems',
         'created_time' => 'string',
         'updated_time' => 'string'
     ];
@@ -419,7 +419,7 @@ class Cart implements ArrayAccess
 
     /**
      * Gets line_items
-     * @return \BigCommerce\Api\v3\Model\LineItem[]
+     * @return \BigCommerce\Api\v3\Model\LineItems
      */
     public function getLineItems()
     {
@@ -428,7 +428,7 @@ class Cart implements ArrayAccess
 
     /**
      * Sets line_items
-     * @param \BigCommerce\Api\v3\Model\LineItem[] $line_items
+     * @param \BigCommerce\Api\v3\Model\LineItems $line_items
      * @return $this
      */
     public function setLineItems($line_items)
