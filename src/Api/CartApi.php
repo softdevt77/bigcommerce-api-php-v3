@@ -753,7 +753,7 @@ class CartApi
      *
      * @param \BigCommerce\Api\v3\Model\CartCreateRequestData $cart_data  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Cart
+     * @return \BigCommerce\Api\v3\Model\CartResponse
      */
     public function cartsPost($cart_data)
     {
@@ -768,7 +768,7 @@ class CartApi
      *
      * @param \BigCommerce\Api\v3\Model\CartCreateRequestData $cart_data  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Cart, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\CartResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cartsPostWithHttpInfo($cart_data)
     {
@@ -811,15 +811,15 @@ class CartApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Cart',
+                '\BigCommerce\Api\v3\Model\CartResponse',
                 '/carts'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Cart', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\CartResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Cart', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\CartResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

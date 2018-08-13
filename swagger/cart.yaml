@@ -27,7 +27,7 @@ paths:
         201:
           description: Returns Cart Entity object.
           schema:
-            $ref: "#/definitions/Cart"
+            $ref: "#/definitions/CartResponse"
   /carts/{cartId}/items:
     post:
       description: Adds line item(s) to the cart.
