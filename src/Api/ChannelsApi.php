@@ -59,7 +59,7 @@ class ChannelsApi
     {
         if ($apiClient === null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('http://api.bigcommerce.com');
+            $apiClient->getConfig()->setHost('https://api.bigcommerce.com');
         }
 
         $this->apiClient = $apiClient;
@@ -86,87 +86,6 @@ class ChannelsApi
     {
         $this->apiClient = $apiClient;
         return $this;
-    }
-
-    /**
-     * Operation channelsChannelIdDelete
-     *
-     * Delete Channel
-     *
-     * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return void
-     */
-    public function channelsChannelIdDelete($channel_id)
-    {
-        list($response) = $this->channelsChannelIdDeleteWithHttpInfo($channel_id);
-        return $response;
-    }
-
-    /**
-     * Operation channelsChannelIdDeleteWithHttpInfo
-     *
-     * Delete Channel
-     *
-     * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsChannelIdDeleteWithHttpInfo($channel_id)
-    {
-        // verify the required parameter 'channel_id' is set
-        if ($channel_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $channel_id when calling channelsChannelIdDelete');
-        }
-        // parse inputs
-        $resourcePath = "/channels/{channelId}";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // path params
-        if ($channel_id !== null) {
-            $resourcePath = str_replace(
-                "{" . "channelId" . "}",
-                $this->apiClient->getSerializer()->toPathValue($channel_id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'DELETE',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/channels/{channelId}'
-            );
-
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
-            throw $e;
-        }
     }
 
     /**
@@ -255,12 +174,394 @@ class ChannelsApi
     }
 
     /**
+     * Operation channelsChannelIdListingsGet
+     *
+     * List all Channels Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \DateTime $date_modified min:iso8601 time || max:iso8601 time (optional)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return \BigCommerce\Api\v3\Model\Listing[]
+     */
+    public function channelsChannelIdListingsGet($channel_id, $date_modified = null)
+    {
+        list($response) = $this->channelsChannelIdListingsGetWithHttpInfo($channel_id, $date_modified);
+        return $response;
+    }
+
+    /**
+     * Operation channelsChannelIdListingsGetWithHttpInfo
+     *
+     * List all Channels Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \DateTime $date_modified min:iso8601 time || max:iso8601 time (optional)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return array of \BigCommerce\Api\v3\Model\Listing[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function channelsChannelIdListingsGetWithHttpInfo($channel_id, $date_modified = null)
+    {
+        // verify the required parameter 'channel_id' is set
+        if ($channel_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $channel_id when calling channelsChannelIdListingsGet');
+        }
+        // parse inputs
+        $resourcePath = "/channels/{channelId}/listings";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+
+        // query params
+        if ($date_modified !== null) {
+            $queryParams['date_modified'] = $this->apiClient->getSerializer()->toQueryValue($date_modified);
+        }
+        // path params
+        if ($channel_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "channelId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($channel_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\Listing[]',
+                '/channels/{channelId}/listings'
+            );
+
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing[]', $httpHeader), $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing[]', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation channelsChannelIdListingsListingIdGet
+     *
+     * Get Channel Listing
+     *
+     * @param int $channel_id  (required)
+     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return \BigCommerce\Api\v3\Model\Listing
+     */
+    public function channelsChannelIdListingsListingIdGet($channel_id, $listing_id)
+    {
+        list($response) = $this->channelsChannelIdListingsListingIdGetWithHttpInfo($channel_id, $listing_id);
+        return $response;
+    }
+
+    /**
+     * Operation channelsChannelIdListingsListingIdGetWithHttpInfo
+     *
+     * Get Channel Listing
+     *
+     * @param int $channel_id  (required)
+     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return array of \BigCommerce\Api\v3\Model\Listing, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function channelsChannelIdListingsListingIdGetWithHttpInfo($channel_id, $listing_id)
+    {
+        // verify the required parameter 'channel_id' is set
+        if ($channel_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $channel_id when calling channelsChannelIdListingsListingIdGet');
+        }
+        // verify the required parameter 'listing_id' is set
+        if ($listing_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $listing_id when calling channelsChannelIdListingsListingIdGet');
+        }
+        // parse inputs
+        $resourcePath = "/channels/{channelId}/listings/{listingId}";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+
+        // path params
+        if ($channel_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "channelId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($channel_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($listing_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "listingId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($listing_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\Listing',
+                '/channels/{channelId}/listings/{listingId}'
+            );
+
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing', $httpHeader), $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation channelsChannelIdListingsPost
+     *
+     * Create Channel Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \BigCommerce\Api\v3\Model\BulkCreateListingRequest $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return \BigCommerce\Api\v3\Model\BulkListings
+     */
+    public function channelsChannelIdListingsPost($channel_id, $body)
+    {
+        list($response) = $this->channelsChannelIdListingsPostWithHttpInfo($channel_id, $body);
+        return $response;
+    }
+
+    /**
+     * Operation channelsChannelIdListingsPostWithHttpInfo
+     *
+     * Create Channel Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \BigCommerce\Api\v3\Model\BulkCreateListingRequest $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return array of \BigCommerce\Api\v3\Model\BulkListings, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function channelsChannelIdListingsPostWithHttpInfo($channel_id, $body)
+    {
+        // verify the required parameter 'channel_id' is set
+        if ($channel_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $channel_id when calling channelsChannelIdListingsPost');
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling channelsChannelIdListingsPost');
+        }
+        // parse inputs
+        $resourcePath = "/channels/{channelId}/listings";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+
+        // path params
+        if ($channel_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "channelId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($channel_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\BulkListings',
+                '/channels/{channelId}/listings'
+            );
+
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\BulkListings', $httpHeader), $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\BulkListings', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation channelsChannelIdListingsPut
+     *
+     * Update Channel Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \BigCommerce\Api\v3\Model\BulkUpdateListingRequest $body  (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return \BigCommerce\Api\v3\Model\BulkListings
+     */
+    public function channelsChannelIdListingsPut($channel_id, $body)
+    {
+        list($response) = $this->channelsChannelIdListingsPutWithHttpInfo($channel_id, $body);
+        return $response;
+    }
+
+    /**
+     * Operation channelsChannelIdListingsPutWithHttpInfo
+     *
+     * Update Channel Listings
+     *
+     * @param int $channel_id  (required)
+     * @param \BigCommerce\Api\v3\Model\BulkUpdateListingRequest $body  (required)
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @return array of \BigCommerce\Api\v3\Model\BulkListings, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function channelsChannelIdListingsPutWithHttpInfo($channel_id, $body)
+    {
+        // verify the required parameter 'channel_id' is set
+        if ($channel_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $channel_id when calling channelsChannelIdListingsPut');
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling channelsChannelIdListingsPut');
+        }
+        // parse inputs
+        $resourcePath = "/channels/{channelId}/listings";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+
+        // path params
+        if ($channel_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "channelId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($channel_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\BulkListings',
+                '/channels/{channelId}/listings'
+            );
+
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\BulkListings', $httpHeader), $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\BulkListings', $e->getResponseHeaders());
+                    $e->setResponseObject($data);
+                    break;
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation channelsChannelIdPut
      *
      * Update Channel
      *
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
-     * @param \BigCommerce\Api\v3\Model\Channel $body  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return \BigCommerce\Api\v3\Model\Channel
      */
@@ -276,7 +577,7 @@ class ChannelsApi
      * Update Channel
      *
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
-     * @param \BigCommerce\Api\v3\Model\Channel $body  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return array of \BigCommerce\Api\v3\Model\Channel, HTTP status code, HTTP response headers (array of strings)
      */
@@ -422,432 +723,11 @@ class ChannelsApi
     }
 
     /**
-     * Operation channelsListingsGet
-     *
-     * List all Channels Listings
-     *
-     * @param int $channel_id  (optional)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing[]
-     */
-    public function channelsListingsGet($channel_id = null)
-    {
-        list($response) = $this->channelsListingsGetWithHttpInfo($channel_id);
-        return $response;
-    }
-
-    /**
-     * Operation channelsListingsGetWithHttpInfo
-     *
-     * List all Channels Listings
-     *
-     * @param int $channel_id  (optional)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsListingsGetWithHttpInfo($channel_id = null)
-    {
-        // parse inputs
-        $resourcePath = "/channels/listings";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // query params
-        if ($channel_id !== null) {
-            $queryParams['channel_id'] = $this->apiClient->getSerializer()->toQueryValue($channel_id);
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing[]',
-                '/channels/listings'
-            );
-
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing[]', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing[]', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation channelsListingsListingIdDelete
-     *
-     * Delete Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return void
-     */
-    public function channelsListingsListingIdDelete($listing_id)
-    {
-        list($response) = $this->channelsListingsListingIdDeleteWithHttpInfo($listing_id);
-        return $response;
-    }
-
-    /**
-     * Operation channelsListingsListingIdDeleteWithHttpInfo
-     *
-     * Delete Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsListingsListingIdDeleteWithHttpInfo($listing_id)
-    {
-        // verify the required parameter 'listing_id' is set
-        if ($listing_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $listing_id when calling channelsListingsListingIdDelete');
-        }
-        // parse inputs
-        $resourcePath = "/channels/listings/{listingId}";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // path params
-        if ($listing_id !== null) {
-            $resourcePath = str_replace(
-                "{" . "listingId" . "}",
-                $this->apiClient->getSerializer()->toPathValue($listing_id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'DELETE',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/channels/listings/{listingId}'
-            );
-
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation channelsListingsListingIdGet
-     *
-     * Get Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing
-     */
-    public function channelsListingsListingIdGet($listing_id)
-    {
-        list($response) = $this->channelsListingsListingIdGetWithHttpInfo($listing_id);
-        return $response;
-    }
-
-    /**
-     * Operation channelsListingsListingIdGetWithHttpInfo
-     *
-     * Get Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsListingsListingIdGetWithHttpInfo($listing_id)
-    {
-        // verify the required parameter 'listing_id' is set
-        if ($listing_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $listing_id when calling channelsListingsListingIdGet');
-        }
-        // parse inputs
-        $resourcePath = "/channels/listings/{listingId}";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // path params
-        if ($listing_id !== null) {
-            $resourcePath = str_replace(
-                "{" . "listingId" . "}",
-                $this->apiClient->getSerializer()->toPathValue($listing_id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing',
-                '/channels/listings/{listingId}'
-            );
-
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation channelsListingsListingIdPut
-     *
-     * Update Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @param \BigCommerce\Api\v3\Model\Listing $body  (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing
-     */
-    public function channelsListingsListingIdPut($listing_id, $body)
-    {
-        list($response) = $this->channelsListingsListingIdPutWithHttpInfo($listing_id, $body);
-        return $response;
-    }
-
-    /**
-     * Operation channelsListingsListingIdPutWithHttpInfo
-     *
-     * Update Channel Listing
-     *
-     * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
-     * @param \BigCommerce\Api\v3\Model\Listing $body  (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsListingsListingIdPutWithHttpInfo($listing_id, $body)
-    {
-        // verify the required parameter 'listing_id' is set
-        if ($listing_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $listing_id when calling channelsListingsListingIdPut');
-        }
-        // verify the required parameter 'body' is set
-        if ($body === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $body when calling channelsListingsListingIdPut');
-        }
-        // parse inputs
-        $resourcePath = "/channels/listings/{listingId}";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // path params
-        if ($listing_id !== null) {
-            $resourcePath = str_replace(
-                "{" . "listingId" . "}",
-                $this->apiClient->getSerializer()->toPathValue($listing_id),
-                $resourcePath
-            );
-        }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'PUT',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing',
-                '/channels/listings/{listingId}'
-            );
-
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation channelsListingsPost
-     *
-     * Create a Channel Listing
-     *
-     * @param \BigCommerce\Api\v3\Model\Listing $body  (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing
-     */
-    public function channelsListingsPost($body)
-    {
-        list($response) = $this->channelsListingsPostWithHttpInfo($body);
-        return $response;
-    }
-
-    /**
-     * Operation channelsListingsPostWithHttpInfo
-     *
-     * Create a Channel Listing
-     *
-     * @param \BigCommerce\Api\v3\Model\Listing $body  (required)
-     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function channelsListingsPostWithHttpInfo($body)
-    {
-        // verify the required parameter 'body' is set
-        if ($body === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $body when calling channelsListingsPost');
-        }
-        // parse inputs
-        $resourcePath = "/channels/listings";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
-
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'POST',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing',
-                '/channels/listings'
-            );
-
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing', $httpHeader), $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing', $e->getResponseHeaders());
-                    $e->setResponseObject($data);
-                    break;
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
      * Operation channelsPost
      *
      * Create a Channel
      *
-     * @param \BigCommerce\Api\v3\Model\Channel $body  (required)
+     * @param \BigCommerce\Api\v3\Model\CreateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return \BigCommerce\Api\v3\Model\Channel
      */
@@ -862,7 +742,7 @@ class ChannelsApi
      *
      * Create a Channel
      *
-     * @param \BigCommerce\Api\v3\Model\Channel $body  (required)
+     * @param \BigCommerce\Api\v3\Model\CreateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return array of \BigCommerce\Api\v3\Model\Channel, HTTP status code, HTTP response headers (array of strings)
      */

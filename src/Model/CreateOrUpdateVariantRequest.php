@@ -1,6 +1,6 @@
 <?php
 /**
- * ChannelConfig
+ * CreateOrUpdateVariantRequest
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * ChannelConfig Class Doc Comment
+ * CreateOrUpdateVariantRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ChannelConfig implements ArrayAccess
+class CreateOrUpdateVariantRequest implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,16 +48,15 @@ class ChannelConfig implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Channel_config';
+    protected static $swaggerModelName = 'CreateOrUpdateVariantRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'default_currency' => 'string',
-        'default_price_list_id' => 'int',
-        'storefront_urls' => '\BigCommerce\Api\v3\Model\ChannelConfigStorefrontUrls'
+        'variant_id' => 'int',
+        'state' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -70,9 +69,8 @@ class ChannelConfig implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'default_currency' => 'default_currency',
-        'default_price_list_id' => 'default_price_list_id',
-        'storefront_urls' => 'storefront_urls'
+        'variant_id' => 'variant_id',
+        'state' => 'state'
     ];
 
 
@@ -81,9 +79,8 @@ class ChannelConfig implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'default_currency' => 'setDefaultCurrency',
-        'default_price_list_id' => 'setDefaultPriceListId',
-        'storefront_urls' => 'setStorefrontUrls'
+        'variant_id' => 'setVariantId',
+        'state' => 'setState'
     ];
 
 
@@ -92,9 +89,8 @@ class ChannelConfig implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'default_currency' => 'getDefaultCurrency',
-        'default_price_list_id' => 'getDefaultPriceListId',
-        'storefront_urls' => 'getStorefrontUrls'
+        'variant_id' => 'getVariantId',
+        'state' => 'getState'
     ];
 
     public static function attributeMap()
@@ -112,8 +108,40 @@ class ChannelConfig implements ArrayAccess
         return self::$getters;
     }
 
+    const STATE_UNKNOWN_LISTING_STATE = 'unknown_listing_state';
+    const STATE_PENDING = 'pending';
+    const STATE_PENDING_DISABLE = 'pending_disable';
+    const STATE_PENDING_DELETE = 'pending_delete';
+    const STATE_QUEUED = 'queued';
+    const STATE_SUBMITTED = 'submitted';
+    const STATE_ACTIVE = 'active';
+    const STATE_ERROR = 'error';
+    const STATE_REJECTED = 'rejected';
+    const STATE_DISABLED = 'disabled';
+    const STATE_DELETED = 'deleted';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getStateAllowableValues()
+    {
+        return [
+            self::STATE_UNKNOWN_LISTING_STATE,
+            self::STATE_PENDING,
+            self::STATE_PENDING_DISABLE,
+            self::STATE_PENDING_DELETE,
+            self::STATE_QUEUED,
+            self::STATE_SUBMITTED,
+            self::STATE_ACTIVE,
+            self::STATE_ERROR,
+            self::STATE_REJECTED,
+            self::STATE_DISABLED,
+            self::STATE_DELETED,
+        ];
+    }
     
 
     /**
@@ -128,9 +156,8 @@ class ChannelConfig implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['default_currency'] = isset($data['default_currency']) ? $data['default_currency'] : null;
-        $this->container['default_price_list_id'] = isset($data['default_price_list_id']) ? $data['default_price_list_id'] : null;
-        $this->container['storefront_urls'] = isset($data['storefront_urls']) ? $data['storefront_urls'] : null;
+        $this->container['variant_id'] = isset($data['variant_id']) ? $data['variant_id'] : null;
+        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
     }
 
     /**
@@ -141,6 +168,14 @@ class ChannelConfig implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['variant_id'] === null) {
+            $invalid_properties[] = "'variant_id' can't be null";
+        }
+        $allowed_values = ["unknown_listing_state", "pending", "pending_disable", "pending_delete", "queued", "submitted", "active", "error", "rejected", "disabled", "deleted"];
+        if (!in_array($this->container['state'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
+        }
+
         return $invalid_properties;
     }
 
@@ -152,69 +187,59 @@ class ChannelConfig implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['variant_id'] === null) {
+            return false;
+        }
+        $allowed_values = ["unknown_listing_state", "pending", "pending_disable", "pending_delete", "queued", "submitted", "active", "error", "rejected", "disabled", "deleted"];
+        if (!in_array($this->container['state'], $allowed_values)) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets default_currency
-     * @return string
-     */
-    public function getDefaultCurrency()
-    {
-        return $this->container['default_currency'];
-    }
-
-    /**
-     * Sets default_currency
-     * @param string $default_currency
-     * @return $this
-     */
-    public function setDefaultCurrency($default_currency)
-    {
-        $this->container['default_currency'] = $default_currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets default_price_list_id
+     * Gets variant_id
      * @return int
      */
-    public function getDefaultPriceListId()
+    public function getVariantId()
     {
-        return $this->container['default_price_list_id'];
+        return $this->container['variant_id'];
     }
 
     /**
-     * Sets default_price_list_id
-     * @param int $default_price_list_id
+     * Sets variant_id
+     * @param int $variant_id
      * @return $this
      */
-    public function setDefaultPriceListId($default_price_list_id)
+    public function setVariantId($variant_id)
     {
-        $this->container['default_price_list_id'] = $default_price_list_id;
+        $this->container['variant_id'] = $variant_id;
 
         return $this;
     }
 
     /**
-     * Gets storefront_urls
-     * @return \BigCommerce\Api\v3\Model\ChannelConfigStorefrontUrls
+     * Gets state
+     * @return string
      */
-    public function getStorefrontUrls()
+    public function getState()
     {
-        return $this->container['storefront_urls'];
+        return $this->container['state'];
     }
 
     /**
-     * Sets storefront_urls
-     * @param \BigCommerce\Api\v3\Model\ChannelConfigStorefrontUrls $storefront_urls
+     * Sets state
+     * @param string $state
      * @return $this
      */
-    public function setStorefrontUrls($storefront_urls)
+    public function setState($state)
     {
-        $this->container['storefront_urls'] = $storefront_urls;
+        $allowed_values = array('unknown_listing_state', 'pending', 'pending_disable', 'pending_delete', 'queued', 'submitted', 'active', 'error', 'rejected', 'disabled', 'deleted');
+        if (!is_null($state) && (!in_array($state, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'unknown_listing_state', 'pending', 'pending_disable', 'pending_delete', 'queued', 'submitted', 'active', 'error', 'rejected', 'disabled', 'deleted'");
+        }
+        $this->container['state'] = $state;
 
         return $this;
     }

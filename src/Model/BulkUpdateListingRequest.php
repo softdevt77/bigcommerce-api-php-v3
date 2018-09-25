@@ -1,6 +1,6 @@
 <?php
 /**
- * ChannelConfigStorefrontUrls
+ * BulkUpdateListingRequest
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * ChannelConfigStorefrontUrls Class Doc Comment
+ * BulkUpdateListingRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ChannelConfigStorefrontUrls implements ArrayAccess
+class BulkUpdateListingRequest implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,19 +48,14 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Channel_config_storefront_urls';
+    protected static $swaggerModelName = 'BulkUpdateListingRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'cart' => 'string',
-        'home' => 'string',
-        'login' => 'string',
-        'register' => 'string',
-        'account' => 'string',
-        'shipping_returns' => 'string'
+        
     ];
 
     public static function swaggerTypes()
@@ -73,12 +68,7 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'cart' => 'cart',
-        'home' => 'home',
-        'login' => 'login',
-        'register' => 'register',
-        'account' => 'account',
-        'shipping_returns' => 'shipping_returns'
+        
     ];
 
 
@@ -87,12 +77,7 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'cart' => 'setCart',
-        'home' => 'setHome',
-        'login' => 'setLogin',
-        'register' => 'setRegister',
-        'account' => 'setAccount',
-        'shipping_returns' => 'setShippingReturns'
+        
     ];
 
 
@@ -101,12 +86,7 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'cart' => 'getCart',
-        'home' => 'getHome',
-        'login' => 'getLogin',
-        'register' => 'getRegister',
-        'account' => 'getAccount',
-        'shipping_returns' => 'getShippingReturns'
+        
     ];
 
     public static function attributeMap()
@@ -140,12 +120,6 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['cart'] = isset($data['cart']) ? $data['cart'] : null;
-        $this->container['home'] = isset($data['home']) ? $data['home'] : null;
-        $this->container['login'] = isset($data['login']) ? $data['login'] : null;
-        $this->container['register'] = isset($data['register']) ? $data['register'] : null;
-        $this->container['account'] = isset($data['account']) ? $data['account'] : null;
-        $this->container['shipping_returns'] = isset($data['shipping_returns']) ? $data['shipping_returns'] : null;
     }
 
     /**
@@ -170,132 +144,6 @@ class ChannelConfigStorefrontUrls implements ArrayAccess
         return true;
     }
 
-
-    /**
-     * Gets cart
-     * @return string
-     */
-    public function getCart()
-    {
-        return $this->container['cart'];
-    }
-
-    /**
-     * Sets cart
-     * @param string $cart
-     * @return $this
-     */
-    public function setCart($cart)
-    {
-        $this->container['cart'] = $cart;
-
-        return $this;
-    }
-
-    /**
-     * Gets home
-     * @return string
-     */
-    public function getHome()
-    {
-        return $this->container['home'];
-    }
-
-    /**
-     * Sets home
-     * @param string $home
-     * @return $this
-     */
-    public function setHome($home)
-    {
-        $this->container['home'] = $home;
-
-        return $this;
-    }
-
-    /**
-     * Gets login
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->container['login'];
-    }
-
-    /**
-     * Sets login
-     * @param string $login
-     * @return $this
-     */
-    public function setLogin($login)
-    {
-        $this->container['login'] = $login;
-
-        return $this;
-    }
-
-    /**
-     * Gets register
-     * @return string
-     */
-    public function getRegister()
-    {
-        return $this->container['register'];
-    }
-
-    /**
-     * Sets register
-     * @param string $register
-     * @return $this
-     */
-    public function setRegister($register)
-    {
-        $this->container['register'] = $register;
-
-        return $this;
-    }
-
-    /**
-     * Gets account
-     * @return string
-     */
-    public function getAccount()
-    {
-        return $this->container['account'];
-    }
-
-    /**
-     * Sets account
-     * @param string $account
-     * @return $this
-     */
-    public function setAccount($account)
-    {
-        $this->container['account'] = $account;
-
-        return $this;
-    }
-
-    /**
-     * Gets shipping_returns
-     * @return string
-     */
-    public function getShippingReturns()
-    {
-        return $this->container['shipping_returns'];
-    }
-
-    /**
-     * Sets shipping_returns
-     * @param string $shipping_returns
-     * @return $this
-     */
-    public function setShippingReturns($shipping_returns)
-    {
-        $this->container['shipping_returns'] = $shipping_returns;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

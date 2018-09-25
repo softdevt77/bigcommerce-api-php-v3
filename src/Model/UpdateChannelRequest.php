@@ -1,6 +1,6 @@
 <?php
 /**
- * ListingCustomProperties
+ * UpdateChannelRequest
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * ListingCustomProperties Class Doc Comment
+ * UpdateChannelRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ListingCustomProperties implements ArrayAccess
+class UpdateChannelRequest implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,15 +48,15 @@ class ListingCustomProperties implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Listing_custom_properties';
+    protected static $swaggerModelName = 'UpdateChannelRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'example_prop_one' => 'string',
-        'example_prop_two' => 'string'
+        'name' => 'string',
+        'external_id' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -69,8 +69,8 @@ class ListingCustomProperties implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'example_prop_one' => 'example_prop_one',
-        'example_prop_two' => 'example_prop_two'
+        'name' => 'name',
+        'external_id' => 'external_id'
     ];
 
 
@@ -79,8 +79,8 @@ class ListingCustomProperties implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'example_prop_one' => 'setExamplePropOne',
-        'example_prop_two' => 'setExamplePropTwo'
+        'name' => 'setName',
+        'external_id' => 'setExternalId'
     ];
 
 
@@ -89,8 +89,8 @@ class ListingCustomProperties implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'example_prop_one' => 'getExamplePropOne',
-        'example_prop_two' => 'getExamplePropTwo'
+        'name' => 'getName',
+        'external_id' => 'getExternalId'
     ];
 
     public static function attributeMap()
@@ -124,8 +124,8 @@ class ListingCustomProperties implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['example_prop_one'] = isset($data['example_prop_one']) ? $data['example_prop_one'] : null;
-        $this->container['example_prop_two'] = isset($data['example_prop_two']) ? $data['example_prop_two'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
     }
 
     /**
@@ -136,6 +136,9 @@ class ListingCustomProperties implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['name'] === null) {
+            $invalid_properties[] = "'name' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -147,48 +150,51 @@ class ListingCustomProperties implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['name'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets example_prop_one
+     * Gets name
      * @return string
      */
-    public function getExamplePropOne()
+    public function getName()
     {
-        return $this->container['example_prop_one'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets example_prop_one
-     * @param string $example_prop_one
+     * Sets name
+     * @param string $name
      * @return $this
      */
-    public function setExamplePropOne($example_prop_one)
+    public function setName($name)
     {
-        $this->container['example_prop_one'] = $example_prop_one;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets example_prop_two
+     * Gets external_id
      * @return string
      */
-    public function getExamplePropTwo()
+    public function getExternalId()
     {
-        return $this->container['example_prop_two'];
+        return $this->container['external_id'];
     }
 
     /**
-     * Sets example_prop_two
-     * @param string $example_prop_two
+     * Sets external_id
+     * @param string $external_id
      * @return $this
      */
-    public function setExamplePropTwo($example_prop_two)
+    public function setExternalId($external_id)
     {
-        $this->container['example_prop_two'] = $example_prop_two;
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }

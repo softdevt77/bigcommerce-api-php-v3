@@ -1,6 +1,6 @@
 <?php
 /**
- * ListingError
+ * BulkListings
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * ListingError Class Doc Comment
+ * BulkListings Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ListingError implements ArrayAccess
+class BulkListings implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,16 +48,14 @@ class ListingError implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'ListingError';
+    protected static $swaggerModelName = 'BulkListings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'code' => 'string',
-        'message' => 'string',
-        'severity' => 'string'
+        
     ];
 
     public static function swaggerTypes()
@@ -70,9 +68,7 @@ class ListingError implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'message' => 'message',
-        'severity' => 'severity'
+        
     ];
 
 
@@ -81,9 +77,7 @@ class ListingError implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'message' => 'setMessage',
-        'severity' => 'setSeverity'
+        
     ];
 
 
@@ -92,9 +86,7 @@ class ListingError implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'message' => 'getMessage',
-        'severity' => 'getSeverity'
+        
     ];
 
     public static function attributeMap()
@@ -112,22 +104,8 @@ class ListingError implements ArrayAccess
         return self::$getters;
     }
 
-    const SEVERITY_WARNING = 'warning';
-    const SEVERITY_ERROR = 'error';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     * @return string[]
-     */
-    public function getSeverityAllowableValues()
-    {
-        return [
-            self::SEVERITY_WARNING,
-            self::SEVERITY_ERROR,
-        ];
-    }
     
 
     /**
@@ -142,9 +120,6 @@ class ListingError implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['severity'] = isset($data['severity']) ? $data['severity'] : null;
     }
 
     /**
@@ -155,11 +130,6 @@ class ListingError implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
-        $allowed_values = ["warning", "error"];
-        if (!in_array($this->container['severity'], $allowed_values)) {
-            $invalid_properties[] = "invalid value for 'severity', must be one of #{allowed_values}.";
-        }
-
         return $invalid_properties;
     }
 
@@ -171,80 +141,9 @@ class ListingError implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = ["warning", "error"];
-        if (!in_array($this->container['severity'], $allowed_values)) {
-            return false;
-        }
         return true;
     }
 
-
-    /**
-     * Gets code
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     * @param string $code
-     * @return $this
-     */
-    public function setCode($code)
-    {
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     * @param string $message
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
-     * Gets severity
-     * @return string
-     */
-    public function getSeverity()
-    {
-        return $this->container['severity'];
-    }
-
-    /**
-     * Sets severity
-     * @param string $severity
-     * @return $this
-     */
-    public function setSeverity($severity)
-    {
-        $allowed_values = array('warning', 'error');
-        if (!is_null($severity) && (!in_array($severity, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'severity', must be one of 'warning', 'error'");
-        }
-        $this->container['severity'] = $severity;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

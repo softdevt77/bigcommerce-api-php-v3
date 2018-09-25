@@ -1,6 +1,6 @@
 <?php
 /**
- * Channel
+ * CreateChannelRequest
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * Channel Class Doc Comment
+ * CreateChannelRequest Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Channel implements ArrayAccess
+class CreateChannelRequest implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,19 +48,16 @@ class Channel implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Channel';
+    protected static $swaggerModelName = 'CreateChannelRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
         'type' => 'string',
         'platform' => 'string',
         'name' => 'string',
-        'date_created' => 'string',
-        'date_modified' => 'string',
         'external_id' => 'string'
     ];
 
@@ -74,12 +71,9 @@ class Channel implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
         'type' => 'type',
         'platform' => 'platform',
         'name' => 'name',
-        'date_created' => 'date_created',
-        'date_modified' => 'date_modified',
         'external_id' => 'external_id'
     ];
 
@@ -89,12 +83,9 @@ class Channel implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
         'type' => 'setType',
         'platform' => 'setPlatform',
         'name' => 'setName',
-        'date_created' => 'setDateCreated',
-        'date_modified' => 'setDateModified',
         'external_id' => 'setExternalId'
     ];
 
@@ -104,12 +95,9 @@ class Channel implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
         'type' => 'getType',
         'platform' => 'getPlatform',
         'name' => 'getName',
-        'date_created' => 'getDateCreated',
-        'date_modified' => 'getDateModified',
         'external_id' => 'getExternalId'
     ];
 
@@ -128,8 +116,42 @@ class Channel implements ArrayAccess
         return self::$getters;
     }
 
+    const TYPE_POS = 'pos';
+    const TYPE_MARKETPLACE = 'marketplace';
+    const TYPE_STOREFRONT = 'storefront';
+    const TYPE_MARKETING = 'marketing';
+    const TYPE_CUSTOM = 'custom';
+    const PLATFORM_WORDPRESS = 'wordpress';
+    const PLATFORM_BIGCOMMERCE = 'bigcommerce';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_POS,
+            self::TYPE_MARKETPLACE,
+            self::TYPE_STOREFRONT,
+            self::TYPE_MARKETING,
+            self::TYPE_CUSTOM,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getPlatformAllowableValues()
+    {
+        return [
+            self::PLATFORM_WORDPRESS,
+            self::PLATFORM_BIGCOMMERCE,
+        ];
+    }
     
 
     /**
@@ -144,12 +166,9 @@ class Channel implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['platform'] = isset($data['platform']) ? $data['platform'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['date_created'] = isset($data['date_created']) ? $data['date_created'] : null;
-        $this->container['date_modified'] = isset($data['date_modified']) ? $data['date_modified'] : null;
         $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
     }
 
@@ -161,6 +180,22 @@ class Channel implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['type'] === null) {
+            $invalid_properties[] = "'type' can't be null";
+        }
+        $allowed_values = ["pos", "marketplace", "storefront", "marketing", "custom"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'type', must be one of #{allowed_values}.";
+        }
+
+        if ($this->container['platform'] === null) {
+            $invalid_properties[] = "'platform' can't be null";
+        }
+        $allowed_values = ["wordpress", "bigcommerce"];
+        if (!in_array($this->container['platform'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'platform', must be one of #{allowed_values}.";
+        }
+
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
@@ -175,33 +210,26 @@ class Channel implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['type'] === null) {
+            return false;
+        }
+        $allowed_values = ["pos", "marketplace", "storefront", "marketing", "custom"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
+        if ($this->container['platform'] === null) {
+            return false;
+        }
+        $allowed_values = ["wordpress", "bigcommerce"];
+        if (!in_array($this->container['platform'], $allowed_values)) {
+            return false;
+        }
         if ($this->container['name'] === null) {
             return false;
         }
         return true;
     }
 
-
-    /**
-     * Gets id
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     * @param int $id
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
 
     /**
      * Gets type
@@ -219,6 +247,10 @@ class Channel implements ArrayAccess
      */
     public function setType($type)
     {
+        $allowed_values = array('pos', 'marketplace', 'storefront', 'marketing', 'custom');
+        if ((!in_array($type, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'pos', 'marketplace', 'storefront', 'marketing', 'custom'");
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -240,6 +272,10 @@ class Channel implements ArrayAccess
      */
     public function setPlatform($platform)
     {
+        $allowed_values = array('wordpress', 'bigcommerce');
+        if ((!in_array($platform, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'platform', must be one of 'wordpress', 'bigcommerce'");
+        }
         $this->container['platform'] = $platform;
 
         return $this;
@@ -262,48 +298,6 @@ class Channel implements ArrayAccess
     public function setName($name)
     {
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_created
-     * @return string
-     */
-    public function getDateCreated()
-    {
-        return $this->container['date_created'];
-    }
-
-    /**
-     * Sets date_created
-     * @param string $date_created
-     * @return $this
-     */
-    public function setDateCreated($date_created)
-    {
-        $this->container['date_created'] = $date_created;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_modified
-     * @return string
-     */
-    public function getDateModified()
-    {
-        return $this->container['date_modified'];
-    }
-
-    /**
-     * Sets date_modified
-     * @param string $date_modified
-     * @return $this
-     */
-    public function setDateModified($date_modified)
-    {
-        $this->container['date_modified'] = $date_modified;
 
         return $this;
     }
