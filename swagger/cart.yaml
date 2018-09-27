@@ -558,3 +558,7 @@ definitions:
         format: float
       amount_as_integer:
         type: number
+
+  Meta:
+    type: object
+    description: Empty meta object; may be used later.

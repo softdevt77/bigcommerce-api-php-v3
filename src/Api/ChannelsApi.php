@@ -95,7 +95,7 @@ class ChannelsApi
      *
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Channel
+     * @return \BigCommerce\Api\v3\Model\ChannelResponse
      */
     public function channelsChannelIdGet($channel_id)
     {
@@ -110,7 +110,7 @@ class ChannelsApi
      *
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Channel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ChannelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsChannelIdGetWithHttpInfo($channel_id)
     {
@@ -156,15 +156,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Channel',
+                '\BigCommerce\Api\v3\Model\ChannelResponse',
                 '/channels/{channelId}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Channel', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ChannelResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Channel', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ChannelResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -563,7 +563,7 @@ class ChannelsApi
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
      * @param \BigCommerce\Api\v3\Model\UpdateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Channel
+     * @return \BigCommerce\Api\v3\Model\ChannelResponse
      */
     public function channelsChannelIdPut($channel_id, $body)
     {
@@ -579,7 +579,7 @@ class ChannelsApi
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
      * @param \BigCommerce\Api\v3\Model\UpdateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Channel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ChannelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsChannelIdPutWithHttpInfo($channel_id, $body)
     {
@@ -634,15 +634,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Channel',
+                '\BigCommerce\Api\v3\Model\ChannelResponse',
                 '/channels/{channelId}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Channel', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ChannelResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Channel', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ChannelResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -657,7 +657,7 @@ class ChannelsApi
      * List all Channels
      *
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Channel[]
+     * @return \BigCommerce\Api\v3\Model\ChannelCollectionResponse
      */
     public function channelsGet()
     {
@@ -671,7 +671,7 @@ class ChannelsApi
      * List all Channels
      *
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Channel[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ChannelCollectionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsGetWithHttpInfo()
     {
@@ -705,15 +705,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Channel[]',
+                '\BigCommerce\Api\v3\Model\ChannelCollectionResponse',
                 '/channels'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Channel[]', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ChannelCollectionResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Channel[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ChannelCollectionResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -729,7 +729,7 @@ class ChannelsApi
      *
      * @param \BigCommerce\Api\v3\Model\CreateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Channel
+     * @return \BigCommerce\Api\v3\Model\ChannelResponse
      */
     public function channelsPost($body)
     {
@@ -744,7 +744,7 @@ class ChannelsApi
      *
      * @param \BigCommerce\Api\v3\Model\CreateChannelRequest $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Channel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ChannelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsPostWithHttpInfo($body)
     {
@@ -787,15 +787,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Channel',
+                '\BigCommerce\Api\v3\Model\ChannelResponse',
                 '/channels'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Channel', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ChannelResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Channel', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ChannelResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

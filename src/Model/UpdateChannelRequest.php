@@ -55,6 +55,8 @@ class UpdateChannelRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'type' => 'string',
+        'platform' => 'string',
         'name' => 'string',
         'external_id' => 'string'
     ];
@@ -69,6 +71,8 @@ class UpdateChannelRequest implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
+        'platform' => 'platform',
         'name' => 'name',
         'external_id' => 'external_id'
     ];
@@ -79,6 +83,8 @@ class UpdateChannelRequest implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
+        'platform' => 'setPlatform',
         'name' => 'setName',
         'external_id' => 'setExternalId'
     ];
@@ -89,6 +95,8 @@ class UpdateChannelRequest implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
+        'platform' => 'getPlatform',
         'name' => 'getName',
         'external_id' => 'getExternalId'
     ];
@@ -108,8 +116,42 @@ class UpdateChannelRequest implements ArrayAccess
         return self::$getters;
     }
 
+    const TYPE_POS = 'pos';
+    const TYPE_MARKETPLACE = 'marketplace';
+    const TYPE_STOREFRONT = 'storefront';
+    const TYPE_MARKETING = 'marketing';
+    const TYPE_CUSTOM = 'custom';
+    const PLATFORM_WORDPRESS = 'wordpress';
+    const PLATFORM_BIGCOMMERCE = 'bigcommerce';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_POS,
+            self::TYPE_MARKETPLACE,
+            self::TYPE_STOREFRONT,
+            self::TYPE_MARKETING,
+            self::TYPE_CUSTOM,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getPlatformAllowableValues()
+    {
+        return [
+            self::PLATFORM_WORDPRESS,
+            self::PLATFORM_BIGCOMMERCE,
+        ];
+    }
     
 
     /**
@@ -124,6 +166,8 @@ class UpdateChannelRequest implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['platform'] = isset($data['platform']) ? $data['platform'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
     }
@@ -136,6 +180,22 @@ class UpdateChannelRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['type'] === null) {
+            $invalid_properties[] = "'type' can't be null";
+        }
+        $allowed_values = ["pos", "marketplace", "storefront", "marketing", "custom"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'type', must be one of #{allowed_values}.";
+        }
+
+        if ($this->container['platform'] === null) {
+            $invalid_properties[] = "'platform' can't be null";
+        }
+        $allowed_values = ["wordpress", "bigcommerce"];
+        if (!in_array($this->container['platform'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'platform', must be one of #{allowed_values}.";
+        }
+
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
@@ -150,12 +210,76 @@ class UpdateChannelRequest implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['type'] === null) {
+            return false;
+        }
+        $allowed_values = ["pos", "marketplace", "storefront", "marketing", "custom"];
+        if (!in_array($this->container['type'], $allowed_values)) {
+            return false;
+        }
+        if ($this->container['platform'] === null) {
+            return false;
+        }
+        $allowed_values = ["wordpress", "bigcommerce"];
+        if (!in_array($this->container['platform'], $allowed_values)) {
+            return false;
+        }
         if ($this->container['name'] === null) {
             return false;
         }
         return true;
     }
 
+
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowed_values = array('pos', 'marketplace', 'storefront', 'marketing', 'custom');
+        if ((!in_array($type, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'pos', 'marketplace', 'storefront', 'marketing', 'custom'");
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets platform
+     * @return string
+     */
+    public function getPlatform()
+    {
+        return $this->container['platform'];
+    }
+
+    /**
+     * Sets platform
+     * @param string $platform
+     * @return $this
+     */
+    public function setPlatform($platform)
+    {
+        $allowed_values = array('wordpress', 'bigcommerce');
+        if ((!in_array($platform, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'platform', must be one of 'wordpress', 'bigcommerce'");
+        }
+        $this->container['platform'] = $platform;
+
+        return $this;
+    }
 
     /**
      * Gets name

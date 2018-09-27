@@ -26,9 +26,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Channel'
+            $ref: "#/definitions/ChannelCollectionResponse"
           examples:
             application/json:
               - id: 1
@@ -57,7 +55,7 @@ paths:
         200:
           description: ''
           schema:
-            $ref: '#/definitions/Channel'
+            $ref: "#/definitions/ChannelResponse"
           examples:
             application/json:
               id: 1
@@ -85,7 +83,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            $ref: '#/definitions/Channel'
+            $ref: "#/definitions/ChannelResponse"
           examples:
             application/json:
               id: 1
@@ -108,7 +106,7 @@ paths:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/Channel'
+            $ref: "#/definitions/ChannelResponse"
           examples:
             application/json:
               id: 1
@@ -248,12 +246,40 @@ definitions:
     title: Channel
     type: object
     properties:
+      type:
+        type: string
+        enum: [pos, marketplace, storefront, marketing, custom]
+      platform:
+        type: string
+        enum: [wordpress, bigcommerce]
       name:
         type: string
       external_id:
         type: string
     required:
       - name
+      - type
+      - platform
+  ChannelResponse:
+    description: |
+      Response payload for the BigCommerce API.
+    type: object
+    properties:
+      data:
+        $ref: "#/definitions/Channel"
+      meta:
+        $ref: "#/definitions/Meta"
+  ChannelCollectionResponse:
+    description: |
+      Response payload for the BigCommerce API.
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Channel'
+      meta:
+        $ref: "#/definitions/Meta"
   Channel:
     title: Channel
     type: object
@@ -457,5 +483,7 @@ definitions:
     required:
       - variant_id
       - state
-      
+  Meta:
+    type: object
+    description: Empty meta object; may be used later.
       
