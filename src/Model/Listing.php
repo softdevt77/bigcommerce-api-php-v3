@@ -62,8 +62,8 @@ class Listing implements ArrayAccess
         'name' => 'string',
         'description' => 'string',
         'external_id' => 'string',
-        'date_created' => 'string',
-        'date_modified' => 'string',
+        'date_created' => '\DateTime',
+        'date_modified' => '\DateTime',
         'variants' => '\BigCommerce\Api\v3\Model\ListingVariant[]'
     ];
 
@@ -403,7 +403,7 @@ class Listing implements ArrayAccess
 
     /**
      * Gets date_created
-     * @return string
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -412,7 +412,7 @@ class Listing implements ArrayAccess
 
     /**
      * Sets date_created
-     * @param string $date_created
+     * @param \DateTime $date_created
      * @return $this
      */
     public function setDateCreated($date_created)
@@ -424,7 +424,7 @@ class Listing implements ArrayAccess
 
     /**
      * Gets date_modified
-     * @return string
+     * @return \DateTime
      */
     public function getDateModified()
     {
@@ -433,7 +433,7 @@ class Listing implements ArrayAccess
 
     /**
      * Sets date_modified
-     * @param string $date_modified
+     * @param \DateTime $date_modified
      * @return $this
      */
     public function setDateModified($date_modified)

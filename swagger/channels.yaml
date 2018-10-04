@@ -22,6 +22,7 @@ paths:
       tags:
         - Channels
       summary: List all Channels
+      operationId: listChannels
       responses:
         200:
           description: Successful Response
@@ -45,6 +46,7 @@ paths:
       tags:
         - Channels
       summary: Create a Channel
+      operationId: createChannel
       parameters:
         - name: body
           in: body
@@ -79,6 +81,7 @@ paths:
       tags:
         - Channels
       summary: Get Channel
+      operationId: getChannel
       responses:
         200:
           description: Successful Response
@@ -96,6 +99,7 @@ paths:
       tags:
         - Channels
       summary: Update Channel
+      operationId: updateChannel
       parameters:
         - name: body
           in: body
@@ -124,17 +128,17 @@ paths:
       tags:
         - Channels
       summary: List all Channels Listings
+      operationId: listChannelListings
       parameters:
           - name: "channelId"
             in: "path"
             type: integer
             required: true
             format: int64
-          - name: date_modified
-            in: query
-            type: string
-            format: date-time
-            description: "min:iso8601 time || max:iso8601 time"
+          - $ref: "#/parameters/LimitParam"
+          - $ref: "#/parameters/AfterParam"
+          #- $ref: "#/parameters/DateModifiedMaxParam"
+          #- $ref: "#/parameters/DateModifiedMinParam"
       responses:
         200:
           description: Successful Response
@@ -144,6 +148,7 @@ paths:
       tags:
         - Channels
       summary: Update Channel Listings
+      operationId: updateChannelListings
       parameters:
         - name: "channelId"
           in: "path"
@@ -166,6 +171,7 @@ paths:
       tags:
         - Channels
       summary: Create Channel Listings
+      operationId: createChannelListings
       parameters:
         - name: "channelId"
           in: "path"
@@ -205,6 +211,7 @@ paths:
       tags:
         - Channels
       summary: Get Channel Listing
+      operationId: getChannelListing
       responses:
         200:
           description: Successful Response
@@ -464,8 +471,10 @@ definitions:
         type: string
       date_created:
         type: string
+        format: date-time
       date_modified:
         type: string
+        format: date-time
       variants:
         type: array
         items: { $ref: '#/definitions/ListingVariant' }
@@ -531,4 +540,37 @@ definitions:
   Meta:
     type: object
     description: Empty meta object; may be used later.
-      
+parameters:
+  AfterParam:
+    name: after
+    description: |
+      Specifies the prior ID number in a limited (paginated) list of listings.
+    required: false
+    in: query
+    type: integer
+  DateModifiedMaxParam:
+    name: date_modified:max
+    description: "max iso8601 time"
+    in: query
+    type: string
+    format: date-time
+  DateModifiedMinParam:
+    name: date_modified:min
+    description: "min iso8601 time"
+    in: query
+    type: string
+    format: date-time
+  PageParam:
+    name: page
+    description: |
+      Specifies the page number in a limited (paginated) list of listings.
+    required: false
+    in: query
+    type: integer
+  LimitParam:
+    name: limit
+    description: |
+      Controls the number of items per page in a limited (paginated) list of products.
+    required: false
+    in: query
+    type: integer
