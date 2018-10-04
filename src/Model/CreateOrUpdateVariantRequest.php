@@ -55,6 +55,7 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'product_id' => 'int',
         'variant_id' => 'int',
         'state' => 'string'
     ];
@@ -69,6 +70,7 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'product_id' => 'product_id',
         'variant_id' => 'variant_id',
         'state' => 'state'
     ];
@@ -79,6 +81,7 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'product_id' => 'setProductId',
         'variant_id' => 'setVariantId',
         'state' => 'setState'
     ];
@@ -89,6 +92,7 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'product_id' => 'getProductId',
         'variant_id' => 'getVariantId',
         'state' => 'getState'
     ];
@@ -108,17 +112,17 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
         return self::$getters;
     }
 
-    const STATE_UNKNOWN_LISTING_STATE = 'unknown_listing_state';
-    const STATE_PENDING = 'pending';
-    const STATE_PENDING_DISABLE = 'pending_disable';
-    const STATE_PENDING_DELETE = 'pending_delete';
-    const STATE_QUEUED = 'queued';
-    const STATE_SUBMITTED = 'submitted';
-    const STATE_ACTIVE = 'active';
-    const STATE_ERROR = 'error';
-    const STATE_REJECTED = 'rejected';
-    const STATE_DISABLED = 'disabled';
-    const STATE_DELETED = 'deleted';
+    const STATE_ACTIVE = 'ACTIVE';
+    const STATE_DISABLED = 'DISABLED';
+    const STATE_ERRORED = 'ERRORED';
+    const STATE_PENDING = 'PENDING';
+    const STATE_PENDING_DISABLE = 'PENDING_DISABLE';
+    const STATE_PENDING_DELETE = 'PENDING_DELETE';
+    const STATE_QUEUED = 'QUEUED';
+    const STATE_REJECTED = 'REJECTED';
+    const STATE_SUBMITTED = 'SUBMITTED';
+    const STATE_DELETED = 'DELETED';
+    const STATE_UNKNOWN_LISTING_STATE = 'UNKNOWN_LISTING_STATE';
     
 
     
@@ -129,17 +133,17 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
     public function getStateAllowableValues()
     {
         return [
-            self::STATE_UNKNOWN_LISTING_STATE,
+            self::STATE_ACTIVE,
+            self::STATE_DISABLED,
+            self::STATE_ERRORED,
             self::STATE_PENDING,
             self::STATE_PENDING_DISABLE,
             self::STATE_PENDING_DELETE,
             self::STATE_QUEUED,
-            self::STATE_SUBMITTED,
-            self::STATE_ACTIVE,
-            self::STATE_ERROR,
             self::STATE_REJECTED,
-            self::STATE_DISABLED,
+            self::STATE_SUBMITTED,
             self::STATE_DELETED,
+            self::STATE_UNKNOWN_LISTING_STATE,
         ];
     }
     
@@ -156,6 +160,7 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
         $this->container['variant_id'] = isset($data['variant_id']) ? $data['variant_id'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
     }
@@ -168,10 +173,13 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['product_id'] === null) {
+            $invalid_properties[] = "'product_id' can't be null";
+        }
         if ($this->container['variant_id'] === null) {
             $invalid_properties[] = "'variant_id' can't be null";
         }
-        $allowed_values = ["unknown_listing_state", "pending", "pending_disable", "pending_delete", "queued", "submitted", "active", "error", "rejected", "disabled", "deleted"];
+        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
@@ -187,16 +195,40 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['product_id'] === null) {
+            return false;
+        }
         if ($this->container['variant_id'] === null) {
             return false;
         }
-        $allowed_values = ["unknown_listing_state", "pending", "pending_disable", "pending_delete", "queued", "submitted", "active", "error", "rejected", "disabled", "deleted"];
+        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
         return true;
     }
 
+
+    /**
+     * Gets product_id
+     * @return int
+     */
+    public function getProductId()
+    {
+        return $this->container['product_id'];
+    }
+
+    /**
+     * Sets product_id
+     * @param int $product_id
+     * @return $this
+     */
+    public function setProductId($product_id)
+    {
+        $this->container['product_id'] = $product_id;
+
+        return $this;
+    }
 
     /**
      * Gets variant_id
@@ -235,9 +267,9 @@ class CreateOrUpdateVariantRequest implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('unknown_listing_state', 'pending', 'pending_disable', 'pending_delete', 'queued', 'submitted', 'active', 'error', 'rejected', 'disabled', 'deleted');
+        $allowed_values = array('ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE');
         if (!is_null($state) && (!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'unknown_listing_state', 'pending', 'pending_disable', 'pending_delete', 'queued', 'submitted', 'active', 'error', 'rejected', 'disabled', 'deleted'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE'");
         }
         $this->container['state'] = $state;
 

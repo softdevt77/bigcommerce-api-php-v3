@@ -1,6 +1,6 @@
 <?php
 /**
- * BulkListings
+ * ListingResponse
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * BulkListings Class Doc Comment
+ * ListingResponse Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class BulkListings implements ArrayAccess
+class ListingResponse implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,14 +48,15 @@ class BulkListings implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'BulkListings';
+    protected static $swaggerModelName = 'ListingResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+        'data' => '\BigCommerce\Api\v3\Model\Listing',
+        'meta' => '\BigCommerce\Api\v3\Model\Meta'
     ];
 
     public static function swaggerTypes()
@@ -68,7 +69,8 @@ class BulkListings implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'data' => 'data',
+        'meta' => 'meta'
     ];
 
 
@@ -77,7 +79,8 @@ class BulkListings implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        
+        'data' => 'setData',
+        'meta' => 'setMeta'
     ];
 
 
@@ -86,7 +89,8 @@ class BulkListings implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        
+        'data' => 'getData',
+        'meta' => 'getMeta'
     ];
 
     public static function attributeMap()
@@ -120,6 +124,8 @@ class BulkListings implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['data'] = isset($data['data']) ? $data['data'] : null;
+        $this->container['meta'] = isset($data['meta']) ? $data['meta'] : null;
     }
 
     /**
@@ -144,6 +150,48 @@ class BulkListings implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets data
+     * @return \BigCommerce\Api\v3\Model\Listing
+     */
+    public function getData()
+    {
+        return $this->container['data'];
+    }
+
+    /**
+     * Sets data
+     * @param \BigCommerce\Api\v3\Model\Listing $data
+     * @return $this
+     */
+    public function setData($data)
+    {
+        $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     * @return \BigCommerce\Api\v3\Model\Meta
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     * @param \BigCommerce\Api\v3\Model\Meta $meta
+     * @return $this
+     */
+    public function setMeta($meta)
+    {
+        $this->container['meta'] = $meta;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      * @param  integer $offset Offset

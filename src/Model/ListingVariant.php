@@ -1,6 +1,6 @@
 <?php
 /**
- * Listing
+ * ListingVariant
  *
  * PHP version 5
  *
@@ -32,7 +32,7 @@ namespace BigCommerce\Api\v3\Model;
 use \ArrayAccess;
 
 /**
- * Listing Class Doc Comment
+ * ListingVariant Class Doc Comment
  *
  * @category    Class */
 /**
@@ -40,7 +40,7 @@ use \ArrayAccess;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Listing implements ArrayAccess
+class ListingVariant implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,23 +48,18 @@ class Listing implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Listing';
+    protected static $swaggerModelName = 'ListingVariant';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'channel_id' => 'int',
-        'listing_id' => 'int',
-        'product_id' => 'int',
-        'state' => 'string',
-        'name' => 'string',
-        'description' => 'string',
+        'variant_id' => 'int',
         'external_id' => 'string',
+        'state' => 'string',
         'date_created' => 'string',
-        'date_modified' => 'string',
-        'variants' => '\BigCommerce\Api\v3\Model\ListingVariant[]'
+        'date_modified' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -77,16 +72,11 @@ class Listing implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'channel_id' => 'channel_id',
-        'listing_id' => 'listing_id',
-        'product_id' => 'product_id',
-        'state' => 'state',
-        'name' => 'name',
-        'description' => 'description',
+        'variant_id' => 'variant_id',
         'external_id' => 'external_id',
+        'state' => 'state',
         'date_created' => 'date_created',
-        'date_modified' => 'date_modified',
-        'variants' => 'variants'
+        'date_modified' => 'date_modified'
     ];
 
 
@@ -95,16 +85,11 @@ class Listing implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'channel_id' => 'setChannelId',
-        'listing_id' => 'setListingId',
-        'product_id' => 'setProductId',
-        'state' => 'setState',
-        'name' => 'setName',
-        'description' => 'setDescription',
+        'variant_id' => 'setVariantId',
         'external_id' => 'setExternalId',
+        'state' => 'setState',
         'date_created' => 'setDateCreated',
-        'date_modified' => 'setDateModified',
-        'variants' => 'setVariants'
+        'date_modified' => 'setDateModified'
     ];
 
 
@@ -113,16 +98,11 @@ class Listing implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'channel_id' => 'getChannelId',
-        'listing_id' => 'getListingId',
-        'product_id' => 'getProductId',
-        'state' => 'getState',
-        'name' => 'getName',
-        'description' => 'getDescription',
+        'variant_id' => 'getVariantId',
         'external_id' => 'getExternalId',
+        'state' => 'getState',
         'date_created' => 'getDateCreated',
-        'date_modified' => 'getDateModified',
-        'variants' => 'getVariants'
+        'date_modified' => 'getDateModified'
     ];
 
     public static function attributeMap()
@@ -140,17 +120,17 @@ class Listing implements ArrayAccess
         return self::$getters;
     }
 
-    const STATE_ACTIVE_GROUP = 'ACTIVE_GROUP';
-    const STATE_DISABLED_GROUP = 'DISABLED_GROUP';
-    const STATE_ERRORED_GROUP = 'ERRORED_GROUP';
-    const STATE_PENDING_GROUP = 'PENDING_GROUP';
-    const STATE_PENDING_DISABLE_GROUP = 'PENDING_DISABLE_GROUP';
-    const STATE_PENDING_DELETE_GROUP = 'PENDING_DELETE_GROUP';
-    const STATE_QUEUED_GROUP = 'QUEUED_GROUP';
-    const STATE_REJECTED_GROUP = 'REJECTED_GROUP';
-    const STATE_SUBMITTED_GROUP = 'SUBMITTED_GROUP';
-    const STATE_DELETED_GROUP = 'DELETED_GROUP';
-    const STATE_UNKNOWN_LISTING_GROUP_STATE = 'UNKNOWN_LISTING_GROUP_STATE';
+    const STATE_ACTIVE = 'ACTIVE';
+    const STATE_DISABLED = 'DISABLED';
+    const STATE_ERRORED = 'ERRORED';
+    const STATE_PENDING = 'PENDING';
+    const STATE_PENDING_DISABLE = 'PENDING_DISABLE';
+    const STATE_PENDING_DELETE = 'PENDING_DELETE';
+    const STATE_QUEUED = 'QUEUED';
+    const STATE_REJECTED = 'REJECTED';
+    const STATE_SUBMITTED = 'SUBMITTED';
+    const STATE_DELETED = 'DELETED';
+    const STATE_UNKNOWN_LISTING_STATE = 'UNKNOWN_LISTING_STATE';
     
 
     
@@ -161,17 +141,17 @@ class Listing implements ArrayAccess
     public function getStateAllowableValues()
     {
         return [
-            self::STATE_ACTIVE_GROUP,
-            self::STATE_DISABLED_GROUP,
-            self::STATE_ERRORED_GROUP,
-            self::STATE_PENDING_GROUP,
-            self::STATE_PENDING_DISABLE_GROUP,
-            self::STATE_PENDING_DELETE_GROUP,
-            self::STATE_QUEUED_GROUP,
-            self::STATE_REJECTED_GROUP,
-            self::STATE_SUBMITTED_GROUP,
-            self::STATE_DELETED_GROUP,
-            self::STATE_UNKNOWN_LISTING_GROUP_STATE,
+            self::STATE_ACTIVE,
+            self::STATE_DISABLED,
+            self::STATE_ERRORED,
+            self::STATE_PENDING,
+            self::STATE_PENDING_DISABLE,
+            self::STATE_PENDING_DELETE,
+            self::STATE_QUEUED,
+            self::STATE_REJECTED,
+            self::STATE_SUBMITTED,
+            self::STATE_DELETED,
+            self::STATE_UNKNOWN_LISTING_STATE,
         ];
     }
     
@@ -188,16 +168,11 @@ class Listing implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['channel_id'] = isset($data['channel_id']) ? $data['channel_id'] : null;
-        $this->container['listing_id'] = isset($data['listing_id']) ? $data['listing_id'] : null;
-        $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
-        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['variant_id'] = isset($data['variant_id']) ? $data['variant_id'] : null;
         $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
+        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['date_created'] = isset($data['date_created']) ? $data['date_created'] : null;
         $this->container['date_modified'] = isset($data['date_modified']) ? $data['date_modified'] : null;
-        $this->container['variants'] = isset($data['variants']) ? $data['variants'] : null;
     }
 
     /**
@@ -208,16 +183,13 @@ class Listing implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
-        if ($this->container['channel_id'] === null) {
-            $invalid_properties[] = "'channel_id' can't be null";
-        }
-        if ($this->container['product_id'] === null) {
-            $invalid_properties[] = "'product_id' can't be null";
+        if ($this->container['variant_id'] === null) {
+            $invalid_properties[] = "'variant_id' can't be null";
         }
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = ["ACTIVE_GROUP", "DISABLED_GROUP", "ERRORED_GROUP", "PENDING_GROUP", "PENDING_DISABLE_GROUP", "PENDING_DELETE_GROUP", "QUEUED_GROUP", "REJECTED_GROUP", "SUBMITTED_GROUP", "DELETED_GROUP", "UNKNOWN_LISTING_GROUP_STATE"];
+        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
@@ -233,16 +205,13 @@ class Listing implements ArrayAccess
      */
     public function valid()
     {
-        if ($this->container['channel_id'] === null) {
-            return false;
-        }
-        if ($this->container['product_id'] === null) {
+        if ($this->container['variant_id'] === null) {
             return false;
         }
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = ["ACTIVE_GROUP", "DISABLED_GROUP", "ERRORED_GROUP", "PENDING_GROUP", "PENDING_DISABLE_GROUP", "PENDING_DELETE_GROUP", "QUEUED_GROUP", "REJECTED_GROUP", "SUBMITTED_GROUP", "DELETED_GROUP", "UNKNOWN_LISTING_GROUP_STATE"];
+        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -251,131 +220,22 @@ class Listing implements ArrayAccess
 
 
     /**
-     * Gets channel_id
+     * Gets variant_id
      * @return int
      */
-    public function getChannelId()
+    public function getVariantId()
     {
-        return $this->container['channel_id'];
+        return $this->container['variant_id'];
     }
 
     /**
-     * Sets channel_id
-     * @param int $channel_id
+     * Sets variant_id
+     * @param int $variant_id
      * @return $this
      */
-    public function setChannelId($channel_id)
+    public function setVariantId($variant_id)
     {
-        $this->container['channel_id'] = $channel_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets listing_id
-     * @return int
-     */
-    public function getListingId()
-    {
-        return $this->container['listing_id'];
-    }
-
-    /**
-     * Sets listing_id
-     * @param int $listing_id
-     * @return $this
-     */
-    public function setListingId($listing_id)
-    {
-        $this->container['listing_id'] = $listing_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets product_id
-     * @return int
-     */
-    public function getProductId()
-    {
-        return $this->container['product_id'];
-    }
-
-    /**
-     * Sets product_id
-     * @param int $product_id
-     * @return $this
-     */
-    public function setProductId($product_id)
-    {
-        $this->container['product_id'] = $product_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets state
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->container['state'];
-    }
-
-    /**
-     * Sets state
-     * @param string $state
-     * @return $this
-     */
-    public function setState($state)
-    {
-        $allowed_values = array('ACTIVE_GROUP', 'DISABLED_GROUP', 'ERRORED_GROUP', 'PENDING_GROUP', 'PENDING_DISABLE_GROUP', 'PENDING_DELETE_GROUP', 'QUEUED_GROUP', 'REJECTED_GROUP', 'SUBMITTED_GROUP', 'DELETED_GROUP', 'UNKNOWN_LISTING_GROUP_STATE');
-        if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'ACTIVE_GROUP', 'DISABLED_GROUP', 'ERRORED_GROUP', 'PENDING_GROUP', 'PENDING_DISABLE_GROUP', 'PENDING_DELETE_GROUP', 'QUEUED_GROUP', 'REJECTED_GROUP', 'SUBMITTED_GROUP', 'DELETED_GROUP', 'UNKNOWN_LISTING_GROUP_STATE'");
-        }
-        $this->container['state'] = $state;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     * @param string $name
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     * @param string $description
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
+        $this->container['variant_id'] = $variant_id;
 
         return $this;
     }
@@ -397,6 +257,31 @@ class Listing implements ArrayAccess
     public function setExternalId($external_id)
     {
         $this->container['external_id'] = $external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     * @param string $state
+     * @return $this
+     */
+    public function setState($state)
+    {
+        $allowed_values = array('ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE');
+        if ((!in_array($state, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE'");
+        }
+        $this->container['state'] = $state;
 
         return $this;
     }
@@ -439,27 +324,6 @@ class Listing implements ArrayAccess
     public function setDateModified($date_modified)
     {
         $this->container['date_modified'] = $date_modified;
-
-        return $this;
-    }
-
-    /**
-     * Gets variants
-     * @return \BigCommerce\Api\v3\Model\ListingVariant[]
-     */
-    public function getVariants()
-    {
-        return $this->container['variants'];
-    }
-
-    /**
-     * Sets variants
-     * @param \BigCommerce\Api\v3\Model\ListingVariant[] $variants
-     * @return $this
-     */
-    public function setVariants($variants)
-    {
-        $this->container['variants'] = $variants;
 
         return $this;
     }

@@ -181,7 +181,7 @@ class ChannelsApi
      * @param int $channel_id  (required)
      * @param \DateTime $date_modified min:iso8601 time || max:iso8601 time (optional)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing[]
+     * @return \BigCommerce\Api\v3\Model\ListingCollectionResponse
      */
     public function channelsChannelIdListingsGet($channel_id, $date_modified = null)
     {
@@ -197,7 +197,7 @@ class ChannelsApi
      * @param int $channel_id  (required)
      * @param \DateTime $date_modified min:iso8601 time || max:iso8601 time (optional)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ListingCollectionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsChannelIdListingsGetWithHttpInfo($channel_id, $date_modified = null)
     {
@@ -247,15 +247,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing[]',
+                '\BigCommerce\Api\v3\Model\ListingCollectionResponse',
                 '/channels/{channelId}/listings'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing[]', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing[]', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -369,9 +369,9 @@ class ChannelsApi
      * Create Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\BulkCreateListingRequest $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @param \BigCommerce\Api\v3\Model\CreateListingRequest[] $body If state is omitted in the variants object, it inherits the top-level state (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\BulkListings
+     * @return \BigCommerce\Api\v3\Model\ListingCollectionResponse
      */
     public function channelsChannelIdListingsPost($channel_id, $body)
     {
@@ -385,9 +385,9 @@ class ChannelsApi
      * Create Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\BulkCreateListingRequest $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @param \BigCommerce\Api\v3\Model\CreateListingRequest[] $body If state is omitted in the variants object, it inherits the top-level state (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\BulkListings, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ListingCollectionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsChannelIdListingsPostWithHttpInfo($channel_id, $body)
     {
@@ -442,15 +442,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\BulkListings',
+                '\BigCommerce\Api\v3\Model\ListingCollectionResponse',
                 '/channels/{channelId}/listings'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\BulkListings', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\BulkListings', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
@@ -465,9 +465,9 @@ class ChannelsApi
      * Update Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\BulkUpdateListingRequest $body  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateListingRequest[] $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\BulkListings
+     * @return \BigCommerce\Api\v3\Model\ListingCollectionResponse
      */
     public function channelsChannelIdListingsPut($channel_id, $body)
     {
@@ -481,9 +481,9 @@ class ChannelsApi
      * Update Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\BulkUpdateListingRequest $body  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateListingRequest[] $body  (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\BulkListings, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ListingCollectionResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function channelsChannelIdListingsPutWithHttpInfo($channel_id, $body)
     {
@@ -538,15 +538,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\BulkListings',
+                '\BigCommerce\Api\v3\Model\ListingCollectionResponse',
                 '/channels/{channelId}/listings'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\BulkListings', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 201:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\BulkListings', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ListingCollectionResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }

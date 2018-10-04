@@ -57,7 +57,7 @@ class ChannelCollectionResponse implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'data' => '\BigCommerce\Api\v3\Model\Channel[]',
-        'meta' => '\BigCommerce\Api\v3\Model\Meta'
+        'meta' => '\BigCommerce\Api\v3\Model\CollectionMeta'
     ];
 
     public static function swaggerTypes()
@@ -175,7 +175,7 @@ class ChannelCollectionResponse implements ArrayAccess
 
     /**
      * Gets meta
-     * @return \BigCommerce\Api\v3\Model\Meta
+     * @return \BigCommerce\Api\v3\Model\CollectionMeta
      */
     public function getMeta()
     {
@@ -184,7 +184,7 @@ class ChannelCollectionResponse implements ArrayAccess
 
     /**
      * Sets meta
-     * @param \BigCommerce\Api\v3\Model\Meta $meta
+     * @param \BigCommerce\Api\v3\Model\CollectionMeta $meta
      * @return $this
      */
     public function setMeta($meta)

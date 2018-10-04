@@ -139,24 +139,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Listing'
-          examples:
-            application/json:
-              data:
-                - id: 123
-                  channel_id: 1
-                  product_id: 5431
-                  state: active
-                  name: Product Name
-                  description: This is a wonderful description.
-                  external_id: 1234
-                  variant:
-                    variant_id: 1234
-                    state: active
-              meta:
-                total: 1
+            $ref: "#/definitions/ListingCollectionResponse"
     put:
       tags:
         - Channels
@@ -171,12 +154,14 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/BulkUpdateListingRequest'
+            type: array
+            items:
+              $ref: '#/definitions/UpdateListingRequest'
       responses:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/BulkListings'
+            $ref: '#/definitions/ListingCollectionResponse'
     post:
       tags:
         - Channels
@@ -192,12 +177,14 @@ paths:
           required: true
           description: "If state is omitted in the variants object, it inherits the top-level state"
           schema:
-            $ref: '#/definitions/BulkCreateListingRequest'
+            type: array
+            items:
+              $ref: '#/definitions/CreateListingRequest'
       responses:
         201:
           description: ''
           schema:
-            $ref: '#/definitions/BulkListings'
+            $ref: '#/definitions/ListingCollectionResponse'
   /channels/{channelId}/listings/{listingId}:
     parameters:
       - name: "channelId"
@@ -224,6 +211,54 @@ paths:
           schema:
             $ref: '#/definitions/Listing'
 definitions:
+  CollectionMeta:
+    type: object
+    description: BC Meta payload for collection-type responses
+    properties:
+      pagination:
+        $ref: "#/definitions/Pagination"
+  Pagination:
+    type: object
+    description: |
+      Data about the response, including pagination and collection totals.
+    properties:
+      total:
+        type: integer
+        description: |
+          Total number of items in the result set.
+      count:
+        type: integer
+        description: |
+          Total number of items in the collection response.
+      per_page:
+        type: integer
+        description: |
+          The amount of items returned in the collection per page, controlled by the limit parameter.
+      current_page:
+        type: integer
+        description: |
+          The page you are currently on within the collection.
+      total_pages:
+        type: integer
+        description: |
+          The total number of pages in the collection.
+      links:
+        type: object
+        description: |
+          Pagination links for the previous and next parts of the whole collection.
+        properties:
+          previous:
+            type: string
+            description: |
+              Link to the previous page returned in the response.
+          current:
+            type: string
+            description: |
+              Link to the current page returned in the response.
+          next:
+            type: string
+            description: |
+              Link to the next page returned in the response.
   CreateChannelRequest:
     title: Channel
     type: object
@@ -279,7 +314,7 @@ definitions:
         items:
           $ref: '#/definitions/Channel'
       meta:
-        $ref: "#/definitions/Meta"
+        $ref: "#/definitions/CollectionMeta"
   Channel:
     title: Channel
     type: object
@@ -301,14 +336,6 @@ definitions:
         type: string
     required:
       - name
-  BulkUpdateListingRequest:
-    title: Listings
-    type: array
-    items: { $ref: '#/definitions/UpdateListingRequest' }
-  BulkCreateListingRequest:
-    title: Listings
-    type: array
-    items: { $ref: '#/definitions/CreateListingRequest' }
   CreateListingRequest:
     title: Listing
     type: object
@@ -321,17 +348,17 @@ definitions:
         format: int32
       state:
         enum:
-            - unknown_listing_state
-            - pending
-            - pending_disable
-            - pending_delete
-            - queued
-            - submitted
-            - active
-            - error
-            - rejected
-            - disabled
-            - deleted
+          - ACTIVE_GROUP
+          - DISABLED_GROUP
+          - ERRORED_GROUP
+          - PENDING_GROUP
+          - PENDING_DISABLE_GROUP
+          - PENDING_DELETE_GROUP
+          - QUEUED_GROUP
+          - REJECTED_GROUP
+          - SUBMITTED_GROUP
+          - DELETED_GROUP
+          - UNKNOWN_LISTING_GROUP_STATE
       name:
         type: string
       description:
@@ -360,17 +387,17 @@ definitions:
         format: int32
       state:
         enum:
-            - unknown_listing_state
-            - pending
-            - pending_disable
-            - pending_delete
-            - queued
-            - submitted
-            - active
-            - error
-            - rejected
-            - disabled
-            - deleted
+          - ACTIVE_GROUP
+          - DISABLED_GROUP
+          - ERRORED_GROUP
+          - PENDING_GROUP
+          - PENDING_DISABLE_GROUP
+          - PENDING_DELETE_GROUP
+          - QUEUED_GROUP
+          - REJECTED_GROUP
+          - SUBMITTED_GROUP
+          - DELETED_GROUP
+          - UNKNOWN_LISTING_GROUP_STATE
       name:
         type: string
       description:
@@ -385,10 +412,24 @@ definitions:
       - product_id
       - state
       - variants
-  BulkListings:
-    title: Listings
-    type: array
-    items: { $ref: '#/definitions/Listing' }
+  ListingCollectionResponse:
+    title: Listing Collection Response
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Listing'
+      meta:
+        $ref: "#/definitions/CollectionMeta"
+  ListingResponse:
+    title: Listing Collection Response
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/Listing'
+      meta:
+        $ref: "#/definitions/Meta"
   Listing:
     title: Listing
     type: object
@@ -404,17 +445,17 @@ definitions:
         format: int32
       state:
         enum:
-            - unknown_listing_state
-            - pending
-            - pending_disable
-            - pending_delete
-            - queued
-            - submitted
-            - active
-            - error
-            - rejected
-            - disabled
-            - deleted
+          - ACTIVE_GROUP
+          - DISABLED_GROUP
+          - ERRORED_GROUP
+          - PENDING_GROUP
+          - PENDING_DISABLE_GROUP
+          - PENDING_DELETE_GROUP
+          - QUEUED_GROUP
+          - REJECTED_GROUP
+          - SUBMITTED_GROUP
+          - DELETED_GROUP
+          - UNKNOWN_LISTING_GROUP_STATE
       name:
         type: string
       description:
@@ -427,7 +468,7 @@ definitions:
         type: string
       variants:
         type: array
-        items: { $ref: '#/definitions/Variant' }
+        items: { $ref: '#/definitions/ListingVariant' }
     required:
       - channel_id
       - product_id
@@ -436,26 +477,30 @@ definitions:
     title: Variant
     type: object
     properties:
+      product_id:
+        type: integer
+        format: int64
       variant_id:
         type: integer
         format: int64
       state:
         enum:
-          - unknown_listing_state
-          - pending
-          - pending_disable
-          - pending_delete
-          - queued
-          - submitted
-          - active
-          - error
-          - rejected
-          - disabled
-          - deleted
+          - ACTIVE
+          - DISABLED
+          - ERRORED
+          - PENDING
+          - PENDING_DISABLE
+          - PENDING_DELETE
+          - QUEUED
+          - REJECTED
+          - SUBMITTED
+          - DELETED
+          - UNKNOWN_LISTING_STATE
     required:
+      - product_id
       - variant_id
-  Variant:
-    title: Variant
+  ListingVariant:
+    title: Listing Variant
     type: object
     properties:
       variant_id:
@@ -465,17 +510,17 @@ definitions:
         type: string
       state:
         enum:
-          - unknown_listing_state
-          - pending
-          - pending_disable
-          - pending_delete
-          - queued
-          - submitted
-          - active
-          - error
-          - rejected
-          - disabled
-          - deleted
+          - ACTIVE
+          - DISABLED
+          - ERRORED
+          - PENDING
+          - PENDING_DISABLE
+          - PENDING_DELETE
+          - QUEUED
+          - REJECTED
+          - SUBMITTED
+          - DELETED
+          - UNKNOWN_LISTING_STATE
       date_created:
         type: string
       date_modified:
