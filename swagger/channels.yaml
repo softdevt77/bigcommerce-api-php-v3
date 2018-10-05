@@ -216,7 +216,7 @@ paths:
         200:
           description: Successful Response
           schema:
-            $ref: '#/definitions/Listing'
+            $ref: '#/definitions/ListingResponse'
 definitions:
   CollectionMeta:
     type: object

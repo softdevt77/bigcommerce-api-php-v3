@@ -359,7 +359,7 @@ class ChannelsApi
      * @param int $channel_id  (required)
      * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return \BigCommerce\Api\v3\Model\Listing
+     * @return \BigCommerce\Api\v3\Model\ListingResponse
      */
     public function getChannelListing($channel_id, $listing_id)
     {
@@ -375,7 +375,7 @@ class ChannelsApi
      * @param int $channel_id  (required)
      * @param int $listing_id The ID of a Channel Listing that&#39;s available through GET /channels/listings (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
-     * @return array of \BigCommerce\Api\v3\Model\Listing, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ListingResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getChannelListingWithHttpInfo($channel_id, $listing_id)
     {
@@ -433,15 +433,15 @@ class ChannelsApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\Listing',
+                '\BigCommerce\Api\v3\Model\ListingResponse',
                 '/channels/{channelId}/listings/{listingId}'
             );
 
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\Listing', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ListingResponse', $httpHeader), $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\Listing', $e->getResponseHeaders());
+                    $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ListingResponse', $e->getResponseHeaders());
                     $e->setResponseObject($data);
                     break;
             }
