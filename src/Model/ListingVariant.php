@@ -120,17 +120,17 @@ class ListingVariant implements ArrayAccess
         return self::$getters;
     }
 
-    const STATE_ACTIVE = 'ACTIVE';
-    const STATE_DISABLED = 'DISABLED';
-    const STATE_ERRORED = 'ERRORED';
-    const STATE_PENDING = 'PENDING';
-    const STATE_PENDING_DISABLE = 'PENDING_DISABLE';
-    const STATE_PENDING_DELETE = 'PENDING_DELETE';
-    const STATE_QUEUED = 'QUEUED';
-    const STATE_REJECTED = 'REJECTED';
-    const STATE_SUBMITTED = 'SUBMITTED';
-    const STATE_DELETED = 'DELETED';
-    const STATE_UNKNOWN_LISTING_STATE = 'UNKNOWN_LISTING_STATE';
+    const STATE_ACTIVE = 'active';
+    const STATE_DISABLED = 'disabled';
+    const STATE_ERROR = 'error';
+    const STATE_PENDING = 'pending';
+    const STATE_PENDING_DISABLE = 'pending_disable';
+    const STATE_PENDING_DELETE = 'pending_delete';
+    const STATE_QUEUED = 'queued';
+    const STATE_REJECTED = 'rejected';
+    const STATE_SUBMITTED = 'submitted';
+    const STATE_DELETED = 'deleted';
+    const STATE_UNKNOWN = 'unknown';
     
 
     
@@ -143,7 +143,7 @@ class ListingVariant implements ArrayAccess
         return [
             self::STATE_ACTIVE,
             self::STATE_DISABLED,
-            self::STATE_ERRORED,
+            self::STATE_ERROR,
             self::STATE_PENDING,
             self::STATE_PENDING_DISABLE,
             self::STATE_PENDING_DELETE,
@@ -151,7 +151,7 @@ class ListingVariant implements ArrayAccess
             self::STATE_REJECTED,
             self::STATE_SUBMITTED,
             self::STATE_DELETED,
-            self::STATE_UNKNOWN_LISTING_STATE,
+            self::STATE_UNKNOWN,
         ];
     }
     
@@ -189,7 +189,7 @@ class ListingVariant implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
+        $allowed_values = ["active", "disabled", "error", "pending", "pending_disable", "pending_delete", "queued", "rejected", "submitted", "deleted", "unknown"];
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
@@ -211,7 +211,7 @@ class ListingVariant implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = ["ACTIVE", "DISABLED", "ERRORED", "PENDING", "PENDING_DISABLE", "PENDING_DELETE", "QUEUED", "REJECTED", "SUBMITTED", "DELETED", "UNKNOWN_LISTING_STATE"];
+        $allowed_values = ["active", "disabled", "error", "pending", "pending_disable", "pending_delete", "queued", "rejected", "submitted", "deleted", "unknown"];
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -277,9 +277,9 @@ class ListingVariant implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE');
+        $allowed_values = array('active', 'disabled', 'error', 'pending', 'pending_disable', 'pending_delete', 'queued', 'rejected', 'submitted', 'deleted', 'unknown');
         if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'ACTIVE', 'DISABLED', 'ERRORED', 'PENDING', 'PENDING_DISABLE', 'PENDING_DELETE', 'QUEUED', 'REJECTED', 'SUBMITTED', 'DELETED', 'UNKNOWN_LISTING_STATE'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'active', 'disabled', 'error', 'pending', 'pending_disable', 'pending_delete', 'queued', 'rejected', 'submitted', 'deleted', 'unknown'");
         }
         $this->container['state'] = $state;
 

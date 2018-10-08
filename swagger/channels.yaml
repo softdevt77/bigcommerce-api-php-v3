@@ -355,17 +355,17 @@ definitions:
         format: int32
       state:
         enum:
-          - ACTIVE_GROUP
-          - DISABLED_GROUP
-          - ERRORED_GROUP
-          - PENDING_GROUP
-          - PENDING_DISABLE_GROUP
-          - PENDING_DELETE_GROUP
-          - QUEUED_GROUP
-          - REJECTED_GROUP
-          - SUBMITTED_GROUP
-          - DELETED_GROUP
-          - UNKNOWN_LISTING_GROUP_STATE
+          - active
+          - disabled
+          - error
+          - pending
+          - pending_disable
+          - pending_delete
+          - queued
+          - rejected
+          - submitted
+          - deleted
+          - unknown
       name:
         type: string
       description:
@@ -394,17 +394,17 @@ definitions:
         format: int32
       state:
         enum:
-          - ACTIVE_GROUP
-          - DISABLED_GROUP
-          - ERRORED_GROUP
-          - PENDING_GROUP
-          - PENDING_DISABLE_GROUP
-          - PENDING_DELETE_GROUP
-          - QUEUED_GROUP
-          - REJECTED_GROUP
-          - SUBMITTED_GROUP
-          - DELETED_GROUP
-          - UNKNOWN_LISTING_GROUP_STATE
+          - active
+          - disabled
+          - error
+          - pending
+          - pending_disable
+          - pending_delete
+          - queued
+          - rejected
+          - submitted
+          - deleted
+          - unknown
       name:
         type: string
       description:
@@ -452,17 +452,17 @@ definitions:
         format: int32
       state:
         enum:
-          - ACTIVE_GROUP
-          - DISABLED_GROUP
-          - ERRORED_GROUP
-          - PENDING_GROUP
-          - PENDING_DISABLE_GROUP
-          - PENDING_DELETE_GROUP
-          - QUEUED_GROUP
-          - REJECTED_GROUP
-          - SUBMITTED_GROUP
-          - DELETED_GROUP
-          - UNKNOWN_LISTING_GROUP_STATE
+          - active
+          - disabled
+          - error
+          - pending
+          - pending_disable
+          - pending_delete
+          - queued
+          - rejected
+          - submitted
+          - deleted
+          - unknown
       name:
         type: string
       description:
@@ -494,17 +494,17 @@ definitions:
         format: int64
       state:
         enum:
-          - ACTIVE
-          - DISABLED
-          - ERRORED
-          - PENDING
-          - PENDING_DISABLE
-          - PENDING_DELETE
-          - QUEUED
-          - REJECTED
-          - SUBMITTED
-          - DELETED
-          - UNKNOWN_LISTING_STATE
+          - active
+          - disabled
+          - error
+          - pending
+          - pending_disable
+          - pending_delete
+          - queued
+          - rejected
+          - submitted
+          - deleted
+          - unknown
     required:
       - product_id
       - variant_id
@@ -519,17 +519,17 @@ definitions:
         type: string
       state:
         enum:
-          - ACTIVE
-          - DISABLED
-          - ERRORED
-          - PENDING
-          - PENDING_DISABLE
-          - PENDING_DELETE
-          - QUEUED
-          - REJECTED
-          - SUBMITTED
-          - DELETED
-          - UNKNOWN_LISTING_STATE
+          - active
+          - disabled
+          - error
+          - pending
+          - pending_disable
+          - pending_delete
+          - queued
+          - rejected
+          - submitted
+          - deleted
+          - unknown
       date_created:
         type: string
       date_modified:

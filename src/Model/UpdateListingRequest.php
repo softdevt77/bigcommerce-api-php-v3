@@ -132,17 +132,17 @@ class UpdateListingRequest implements ArrayAccess
         return self::$getters;
     }
 
-    const STATE_ACTIVE_GROUP = 'ACTIVE_GROUP';
-    const STATE_DISABLED_GROUP = 'DISABLED_GROUP';
-    const STATE_ERRORED_GROUP = 'ERRORED_GROUP';
-    const STATE_PENDING_GROUP = 'PENDING_GROUP';
-    const STATE_PENDING_DISABLE_GROUP = 'PENDING_DISABLE_GROUP';
-    const STATE_PENDING_DELETE_GROUP = 'PENDING_DELETE_GROUP';
-    const STATE_QUEUED_GROUP = 'QUEUED_GROUP';
-    const STATE_REJECTED_GROUP = 'REJECTED_GROUP';
-    const STATE_SUBMITTED_GROUP = 'SUBMITTED_GROUP';
-    const STATE_DELETED_GROUP = 'DELETED_GROUP';
-    const STATE_UNKNOWN_LISTING_GROUP_STATE = 'UNKNOWN_LISTING_GROUP_STATE';
+    const STATE_ACTIVE = 'active';
+    const STATE_DISABLED = 'disabled';
+    const STATE_ERROR = 'error';
+    const STATE_PENDING = 'pending';
+    const STATE_PENDING_DISABLE = 'pending_disable';
+    const STATE_PENDING_DELETE = 'pending_delete';
+    const STATE_QUEUED = 'queued';
+    const STATE_REJECTED = 'rejected';
+    const STATE_SUBMITTED = 'submitted';
+    const STATE_DELETED = 'deleted';
+    const STATE_UNKNOWN = 'unknown';
     
 
     
@@ -153,17 +153,17 @@ class UpdateListingRequest implements ArrayAccess
     public function getStateAllowableValues()
     {
         return [
-            self::STATE_ACTIVE_GROUP,
-            self::STATE_DISABLED_GROUP,
-            self::STATE_ERRORED_GROUP,
-            self::STATE_PENDING_GROUP,
-            self::STATE_PENDING_DISABLE_GROUP,
-            self::STATE_PENDING_DELETE_GROUP,
-            self::STATE_QUEUED_GROUP,
-            self::STATE_REJECTED_GROUP,
-            self::STATE_SUBMITTED_GROUP,
-            self::STATE_DELETED_GROUP,
-            self::STATE_UNKNOWN_LISTING_GROUP_STATE,
+            self::STATE_ACTIVE,
+            self::STATE_DISABLED,
+            self::STATE_ERROR,
+            self::STATE_PENDING,
+            self::STATE_PENDING_DISABLE,
+            self::STATE_PENDING_DELETE,
+            self::STATE_QUEUED,
+            self::STATE_REJECTED,
+            self::STATE_SUBMITTED,
+            self::STATE_DELETED,
+            self::STATE_UNKNOWN,
         ];
     }
     
@@ -207,7 +207,7 @@ class UpdateListingRequest implements ArrayAccess
         if ($this->container['state'] === null) {
             $invalid_properties[] = "'state' can't be null";
         }
-        $allowed_values = ["ACTIVE_GROUP", "DISABLED_GROUP", "ERRORED_GROUP", "PENDING_GROUP", "PENDING_DISABLE_GROUP", "PENDING_DELETE_GROUP", "QUEUED_GROUP", "REJECTED_GROUP", "SUBMITTED_GROUP", "DELETED_GROUP", "UNKNOWN_LISTING_GROUP_STATE"];
+        $allowed_values = ["active", "disabled", "error", "pending", "pending_disable", "pending_delete", "queued", "rejected", "submitted", "deleted", "unknown"];
         if (!in_array($this->container['state'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
@@ -235,7 +235,7 @@ class UpdateListingRequest implements ArrayAccess
         if ($this->container['state'] === null) {
             return false;
         }
-        $allowed_values = ["ACTIVE_GROUP", "DISABLED_GROUP", "ERRORED_GROUP", "PENDING_GROUP", "PENDING_DISABLE_GROUP", "PENDING_DELETE_GROUP", "QUEUED_GROUP", "REJECTED_GROUP", "SUBMITTED_GROUP", "DELETED_GROUP", "UNKNOWN_LISTING_GROUP_STATE"];
+        $allowed_values = ["active", "disabled", "error", "pending", "pending_disable", "pending_delete", "queued", "rejected", "submitted", "deleted", "unknown"];
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
@@ -325,9 +325,9 @@ class UpdateListingRequest implements ArrayAccess
      */
     public function setState($state)
     {
-        $allowed_values = array('ACTIVE_GROUP', 'DISABLED_GROUP', 'ERRORED_GROUP', 'PENDING_GROUP', 'PENDING_DISABLE_GROUP', 'PENDING_DELETE_GROUP', 'QUEUED_GROUP', 'REJECTED_GROUP', 'SUBMITTED_GROUP', 'DELETED_GROUP', 'UNKNOWN_LISTING_GROUP_STATE');
+        $allowed_values = array('active', 'disabled', 'error', 'pending', 'pending_disable', 'pending_delete', 'queued', 'rejected', 'submitted', 'deleted', 'unknown');
         if ((!in_array($state, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'ACTIVE_GROUP', 'DISABLED_GROUP', 'ERRORED_GROUP', 'PENDING_GROUP', 'PENDING_DISABLE_GROUP', 'PENDING_DELETE_GROUP', 'QUEUED_GROUP', 'REJECTED_GROUP', 'SUBMITTED_GROUP', 'DELETED_GROUP', 'UNKNOWN_LISTING_GROUP_STATE'");
+            throw new \InvalidArgumentException("Invalid value for 'state', must be one of 'active', 'disabled', 'error', 'pending', 'pending_disable', 'pending_delete', 'queued', 'rejected', 'submitted', 'deleted', 'unknown'");
         }
         $this->container['state'] = $state;
 
