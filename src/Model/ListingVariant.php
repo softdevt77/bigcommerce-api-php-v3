@@ -55,6 +55,7 @@ class ListingVariant implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'product_id' => 'int',
         'variant_id' => 'int',
         'external_id' => 'string',
         'state' => 'string',
@@ -72,6 +73,7 @@ class ListingVariant implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'product_id' => 'product_id',
         'variant_id' => 'variant_id',
         'external_id' => 'external_id',
         'state' => 'state',
@@ -85,6 +87,7 @@ class ListingVariant implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'product_id' => 'setProductId',
         'variant_id' => 'setVariantId',
         'external_id' => 'setExternalId',
         'state' => 'setState',
@@ -98,6 +101,7 @@ class ListingVariant implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'product_id' => 'getProductId',
         'variant_id' => 'getVariantId',
         'external_id' => 'getExternalId',
         'state' => 'getState',
@@ -168,6 +172,7 @@ class ListingVariant implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
         $this->container['variant_id'] = isset($data['variant_id']) ? $data['variant_id'] : null;
         $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
@@ -183,6 +188,9 @@ class ListingVariant implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['product_id'] === null) {
+            $invalid_properties[] = "'product_id' can't be null";
+        }
         if ($this->container['variant_id'] === null) {
             $invalid_properties[] = "'variant_id' can't be null";
         }
@@ -205,6 +213,9 @@ class ListingVariant implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['product_id'] === null) {
+            return false;
+        }
         if ($this->container['variant_id'] === null) {
             return false;
         }
@@ -218,6 +229,27 @@ class ListingVariant implements ArrayAccess
         return true;
     }
 
+
+    /**
+     * Gets product_id
+     * @return int
+     */
+    public function getProductId()
+    {
+        return $this->container['product_id'];
+    }
+
+    /**
+     * Sets product_id
+     * @param int $product_id
+     * @return $this
+     */
+    public function setProductId($product_id)
+    {
+        $this->container['product_id'] = $product_id;
+
+        return $this;
+    }
 
     /**
      * Gets variant_id

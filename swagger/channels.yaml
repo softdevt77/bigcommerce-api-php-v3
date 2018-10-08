@@ -185,7 +185,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/CreateListingRequest'
+              $ref: '#/definitions/Listing'
       responses:
         201:
           description: ''
@@ -343,82 +343,13 @@ definitions:
         type: string
     required:
       - name
-  CreateListingRequest:
-    title: Listing
-    type: object
-    properties:
-      channel_id:
-        type: integer
-        format: int64
-      product_id:
-        type: integer
-        format: int32
-      state:
-        enum:
-          - active
-          - disabled
-          - error
-          - pending
-          - pending_disable
-          - pending_delete
-          - queued
-          - rejected
-          - submitted
-          - deleted
-          - unknown
-      name:
-        type: string
-      description:
-        type: string
-      external_id:
-        type: string
-      variants:
-        type: array
-        items: { $ref: '#/definitions/CreateOrUpdateVariantRequest' }
-    required:
-      - product_id
-      - state
-      - variants
   UpdateListingRequest:
-    title: Listing
-    type: object
-    properties:
-      listing_id:
-        type: integer
-        format: int64
-      channel_id:
-        type: integer
-        format: int64
-      product_id:
-        type: integer
-        format: int32
-      state:
-        enum:
-          - active
-          - disabled
-          - error
-          - pending
-          - pending_disable
-          - pending_delete
-          - queued
-          - rejected
-          - submitted
-          - deleted
-          - unknown
-      name:
-        type: string
-      description:
-        type: string
-      external_id:
-        type: string
-      variants:
-        type: array
-        items: { $ref: '#/definitions/CreateOrUpdateVariantRequest' }
-    required:
-      - listing_id
-      - product_id
-      - state
-      - variants
+    title: Update Listing
+    allOf:
+      - $ref: '#/definitions/Listing'
+      - type: object
+        required:
+          - listing_id
   ListingCollectionResponse:
     title: Listing Collection Response
     type: object
@@ -482,36 +413,13 @@ definitions:
       - channel_id
       - product_id
       - state
-  CreateOrUpdateVariantRequest:
-    title: Variant
+  ListingVariant:
+    title: Listing Variant
     type: object
     properties:
       product_id:
         type: integer
         format: int64
-      variant_id:
-        type: integer
-        format: int64
-      state:
-        enum:
-          - active
-          - disabled
-          - error
-          - pending
-          - pending_disable
-          - pending_delete
-          - queued
-          - rejected
-          - submitted
-          - deleted
-          - unknown
-    required:
-      - product_id
-      - variant_id
-  ListingVariant:
-    title: Listing Variant
-    type: object
-    properties:
       variant_id:
         type: integer
         format: int64
@@ -535,6 +443,7 @@ definitions:
       date_modified:
         type: string
     required:
+      - product_id
       - variant_id
       - state
   Meta:

@@ -55,14 +55,16 @@ class UpdateListingRequest implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'listing_id' => 'int',
         'channel_id' => 'int',
+        'listing_id' => 'int',
         'product_id' => 'int',
         'state' => 'string',
         'name' => 'string',
         'description' => 'string',
         'external_id' => 'string',
-        'variants' => '\BigCommerce\Api\v3\Model\CreateOrUpdateVariantRequest[]'
+        'date_created' => '\DateTime',
+        'date_modified' => '\DateTime',
+        'variants' => '\BigCommerce\Api\v3\Model\ListingVariant[]'
     ];
 
     public static function swaggerTypes()
@@ -75,13 +77,15 @@ class UpdateListingRequest implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'listing_id' => 'listing_id',
         'channel_id' => 'channel_id',
+        'listing_id' => 'listing_id',
         'product_id' => 'product_id',
         'state' => 'state',
         'name' => 'name',
         'description' => 'description',
         'external_id' => 'external_id',
+        'date_created' => 'date_created',
+        'date_modified' => 'date_modified',
         'variants' => 'variants'
     ];
 
@@ -91,13 +95,15 @@ class UpdateListingRequest implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'listing_id' => 'setListingId',
         'channel_id' => 'setChannelId',
+        'listing_id' => 'setListingId',
         'product_id' => 'setProductId',
         'state' => 'setState',
         'name' => 'setName',
         'description' => 'setDescription',
         'external_id' => 'setExternalId',
+        'date_created' => 'setDateCreated',
+        'date_modified' => 'setDateModified',
         'variants' => 'setVariants'
     ];
 
@@ -107,13 +113,15 @@ class UpdateListingRequest implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'listing_id' => 'getListingId',
         'channel_id' => 'getChannelId',
+        'listing_id' => 'getListingId',
         'product_id' => 'getProductId',
         'state' => 'getState',
         'name' => 'getName',
         'description' => 'getDescription',
         'external_id' => 'getExternalId',
+        'date_created' => 'getDateCreated',
+        'date_modified' => 'getDateModified',
         'variants' => 'getVariants'
     ];
 
@@ -180,13 +188,15 @@ class UpdateListingRequest implements ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['listing_id'] = isset($data['listing_id']) ? $data['listing_id'] : null;
         $this->container['channel_id'] = isset($data['channel_id']) ? $data['channel_id'] : null;
+        $this->container['listing_id'] = isset($data['listing_id']) ? $data['listing_id'] : null;
         $this->container['product_id'] = isset($data['product_id']) ? $data['product_id'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['external_id'] = isset($data['external_id']) ? $data['external_id'] : null;
+        $this->container['date_created'] = isset($data['date_created']) ? $data['date_created'] : null;
+        $this->container['date_modified'] = isset($data['date_modified']) ? $data['date_modified'] : null;
         $this->container['variants'] = isset($data['variants']) ? $data['variants'] : null;
     }
 
@@ -198,8 +208,8 @@ class UpdateListingRequest implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
-        if ($this->container['listing_id'] === null) {
-            $invalid_properties[] = "'listing_id' can't be null";
+        if ($this->container['channel_id'] === null) {
+            $invalid_properties[] = "'channel_id' can't be null";
         }
         if ($this->container['product_id'] === null) {
             $invalid_properties[] = "'product_id' can't be null";
@@ -212,9 +222,6 @@ class UpdateListingRequest implements ArrayAccess
             $invalid_properties[] = "invalid value for 'state', must be one of #{allowed_values}.";
         }
 
-        if ($this->container['variants'] === null) {
-            $invalid_properties[] = "'variants' can't be null";
-        }
         return $invalid_properties;
     }
 
@@ -226,7 +233,7 @@ class UpdateListingRequest implements ArrayAccess
      */
     public function valid()
     {
-        if ($this->container['listing_id'] === null) {
+        if ($this->container['channel_id'] === null) {
             return false;
         }
         if ($this->container['product_id'] === null) {
@@ -239,33 +246,9 @@ class UpdateListingRequest implements ArrayAccess
         if (!in_array($this->container['state'], $allowed_values)) {
             return false;
         }
-        if ($this->container['variants'] === null) {
-            return false;
-        }
         return true;
     }
 
-
-    /**
-     * Gets listing_id
-     * @return int
-     */
-    public function getListingId()
-    {
-        return $this->container['listing_id'];
-    }
-
-    /**
-     * Sets listing_id
-     * @param int $listing_id
-     * @return $this
-     */
-    public function setListingId($listing_id)
-    {
-        $this->container['listing_id'] = $listing_id;
-
-        return $this;
-    }
 
     /**
      * Gets channel_id
@@ -284,6 +267,27 @@ class UpdateListingRequest implements ArrayAccess
     public function setChannelId($channel_id)
     {
         $this->container['channel_id'] = $channel_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets listing_id
+     * @return int
+     */
+    public function getListingId()
+    {
+        return $this->container['listing_id'];
+    }
+
+    /**
+     * Sets listing_id
+     * @param int $listing_id
+     * @return $this
+     */
+    public function setListingId($listing_id)
+    {
+        $this->container['listing_id'] = $listing_id;
 
         return $this;
     }
@@ -398,8 +402,50 @@ class UpdateListingRequest implements ArrayAccess
     }
 
     /**
+     * Gets date_created
+     * @return \DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->container['date_created'];
+    }
+
+    /**
+     * Sets date_created
+     * @param \DateTime $date_created
+     * @return $this
+     */
+    public function setDateCreated($date_created)
+    {
+        $this->container['date_created'] = $date_created;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_modified
+     * @return \DateTime
+     */
+    public function getDateModified()
+    {
+        return $this->container['date_modified'];
+    }
+
+    /**
+     * Sets date_modified
+     * @param \DateTime $date_modified
+     * @return $this
+     */
+    public function setDateModified($date_modified)
+    {
+        $this->container['date_modified'] = $date_modified;
+
+        return $this;
+    }
+
+    /**
      * Gets variants
-     * @return \BigCommerce\Api\v3\Model\CreateOrUpdateVariantRequest[]
+     * @return \BigCommerce\Api\v3\Model\ListingVariant[]
      */
     public function getVariants()
     {
@@ -408,7 +454,7 @@ class UpdateListingRequest implements ArrayAccess
 
     /**
      * Sets variants
-     * @param \BigCommerce\Api\v3\Model\CreateOrUpdateVariantRequest[] $variants
+     * @param \BigCommerce\Api\v3\Model\ListingVariant[] $variants
      * @return $this
      */
     public function setVariants($variants)

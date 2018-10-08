@@ -176,7 +176,7 @@ class ChannelsApi
      * Create Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\CreateListingRequest[] $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @param \BigCommerce\Api\v3\Model\Listing[] $body If state is omitted in the variants object, it inherits the top-level state (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return \BigCommerce\Api\v3\Model\ListingCollectionResponse
      */
@@ -192,7 +192,7 @@ class ChannelsApi
      * Create Channel Listings
      *
      * @param int $channel_id  (required)
-     * @param \BigCommerce\Api\v3\Model\CreateListingRequest[] $body If state is omitted in the variants object, it inherits the top-level state (required)
+     * @param \BigCommerce\Api\v3\Model\Listing[] $body If state is omitted in the variants object, it inherits the top-level state (required)
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @return array of \BigCommerce\Api\v3\Model\ListingCollectionResponse, HTTP status code, HTTP response headers (array of strings)
      */
