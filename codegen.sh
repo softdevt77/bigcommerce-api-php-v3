@@ -12,7 +12,7 @@ maven_cache_repo="${SCRIPTDIR}/.swagger-codegen/.m2/repository"
 build_dir="${SCRIPTDIR}/.swagger-codegen/build"
 codegen_dir="${SCRIPTDIR}/swagger-codegen"
 jar="modules/swagger-codegen-cli/target/swagger-codegen-cli.jar"
-cmd="java -DmodelTests=false -DmodelDocs=false -DapiTests=false -DapiDocs=false -Dapis -jar /gen/$jar"
+cmd="java -DmodelTests=false -DmodelDocs=false -DapiTests=false -DapiDocs=false -Dapis -Dmodels -jar /gen/$jar"
 
 mkdir -p "${maven_cache_repo}"
 mkdir -p "${build_dir}"
@@ -38,5 +38,6 @@ docker run --rm -it \
 done
 
 cp -R "${build_dir}/Client/src/Api/." "${SCRIPTDIR}/src/Api/"
+cp -R "${build_dir}/Client/src/Model/." "${SCRIPTDIR}/src/Model/"
 rm -rf "${build_dir}"
 
