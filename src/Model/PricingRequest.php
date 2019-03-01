@@ -44,7 +44,7 @@ class PricingRequest implements ArrayAccess
         'channel_id' => 'int',
         'currency_code' => 'string',
         'customer_group_id' => 'int',
-        'items' => '\BigCommerce\Api\v3\Model\Item[]'
+        'items' => '\BigCommerce\Api\v3\Model\PricingRequestItem[]'
     ];
 
     public static function swaggerTypes()
@@ -219,7 +219,7 @@ class PricingRequest implements ArrayAccess
 
     /**
      * Gets items
-     * @return \BigCommerce\Api\v3\Model\Item[]
+     * @return \BigCommerce\Api\v3\Model\PricingRequestItem[]
      */
     public function getItems()
     {
@@ -228,7 +228,7 @@ class PricingRequest implements ArrayAccess
 
     /**
      * Sets items
-     * @param \BigCommerce\Api\v3\Model\Item[] $items The items to fetch prices for
+     * @param \BigCommerce\Api\v3\Model\PricingRequestItem[] $items The items to fetch prices for
      * @return $this
      */
     public function setItems($items)

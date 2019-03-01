@@ -197,7 +197,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/BulkPricingTier'
-  Item:
+  PricingRequestItem:
     type: object
     description: Details/configuration for the product to request a price for.
     properties:
@@ -211,14 +211,16 @@ definitions:
         type: array
         description: The (optional) option configuration of the product. May be "partially" configured for estimates.
         items:
-          type: object
-          properties:
-            option_id:
-              type: integer
-              description: The ID of the option being configured for this product.
-            value_id:
-              type: integer
-              description: 'The ID of the value matching the option being configured. Note: must be ID, not the value.'
+          $ref: '#/definitions/PricingRequestItemOption'
+  PricingRequestItemOption:
+    type: object
+    properties:
+      option_id:
+        type: integer
+        description: The ID of the option being configured for this product.
+      value_id:
+        type: integer
+        description: 'The ID of the value matching the option being configured. Note: must be ID, not the value.'
   PricingRequest:
     type: object
     properties:
@@ -237,4 +239,4 @@ definitions:
         type: array
         description: The items to fetch prices for
         items:
-          $ref: '#/definitions/Item'
+          $ref: '#/definitions/PricingRequestItem'

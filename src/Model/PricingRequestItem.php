@@ -1,6 +1,6 @@
 <?php
 /**
- * Item
+ * PricingRequestItem
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class Item implements ArrayAccess
+class PricingRequestItem implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,7 +34,7 @@ class Item implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Item';
+    protected static $swaggerModelName = 'PricingRequestItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -43,7 +43,7 @@ class Item implements ArrayAccess
     protected static $swaggerTypes = [
         'product_id' => 'int',
         'variant_id' => 'float',
-        'options' => '\BigCommerce\Api\v3\Model\ItemOptions[]'
+        'options' => '\BigCommerce\Api\v3\Model\PricingRequestItemOption[]'
     ];
 
     public static function swaggerTypes()
@@ -193,7 +193,7 @@ class Item implements ArrayAccess
 
     /**
      * Gets options
-     * @return \BigCommerce\Api\v3\Model\ItemOptions[]
+     * @return \BigCommerce\Api\v3\Model\PricingRequestItemOption[]
      */
     public function getOptions()
     {
@@ -202,7 +202,7 @@ class Item implements ArrayAccess
 
     /**
      * Sets options
-     * @param \BigCommerce\Api\v3\Model\ItemOptions[] $options The (optional) option configuration of the product. May be \"partially\" configured for estimates.
+     * @param \BigCommerce\Api\v3\Model\PricingRequestItemOption[] $options The (optional) option configuration of the product. May be \"partially\" configured for estimates.
      * @return $this
      */
     public function setOptions($options)

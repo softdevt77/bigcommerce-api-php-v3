@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemOptions
+ * PricingRequestItemOption
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class ItemOptions implements ArrayAccess
+class PricingRequestItemOption implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,7 +34,7 @@ class ItemOptions implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Item_options';
+    protected static $swaggerModelName = 'PricingRequestItemOption';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
