@@ -170,14 +170,7 @@ definitions:
         type: array
         description: The optional product option configuration this price was generated for
         items:
-          type: object
-          properties:
-            option_id:
-              description: The ID of the option configured for this price
-              type: integer
-            value_id:
-              description: The selected value ID for the configured option.
-              type: integer
+          $ref: '#/definitions/PricingRequestItemOption'
       retail_price:
         $ref: '#/definitions/TaxPrice'
         description: The (optional) RRP/retail price configured for this product

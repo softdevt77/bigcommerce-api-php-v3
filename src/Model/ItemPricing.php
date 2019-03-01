@@ -43,7 +43,7 @@ class ItemPricing implements ArrayAccess
     protected static $swaggerTypes = [
         'product_id' => 'int',
         'variant_id' => 'int',
-        'options' => '\BigCommerce\Api\v3\Model\ItemPricingOptions[]',
+        'options' => '\BigCommerce\Api\v3\Model\PricingRequestItemOption[]',
         'retail_price' => '\BigCommerce\Api\v3\Model\TaxPrice',
         'sale_price' => '\BigCommerce\Api\v3\Model\TaxPrice',
         'minimum_advertised_price' => '\BigCommerce\Api\v3\Model\TaxPrice',
@@ -233,7 +233,7 @@ class ItemPricing implements ArrayAccess
 
     /**
      * Gets options
-     * @return \BigCommerce\Api\v3\Model\ItemPricingOptions[]
+     * @return \BigCommerce\Api\v3\Model\PricingRequestItemOption[]
      */
     public function getOptions()
     {
@@ -242,7 +242,7 @@ class ItemPricing implements ArrayAccess
 
     /**
      * Sets options
-     * @param \BigCommerce\Api\v3\Model\ItemPricingOptions[] $options The optional product option configuration this price was generated for
+     * @param \BigCommerce\Api\v3\Model\PricingRequestItemOption[] $options The optional product option configuration this price was generated for
      * @return $this
      */
     public function setOptions($options)
