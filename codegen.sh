@@ -6,7 +6,7 @@ SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 cd "$SCRIPTDIR"
 
-apis=("cart" "channels" "sites" "pricing" "swagger")
+apis=("cart" "channels" "sites" "pricing" "swagger" "abandoned_cart")
 
 maven_cache_repo="${SCRIPTDIR}/.swagger-codegen/.m2/repository"
 build_dir="${SCRIPTDIR}/.swagger-codegen/build"
@@ -40,4 +40,3 @@ done
 cp -R "${build_dir}/Client/src/Api/." "${SCRIPTDIR}/src/Api/"
 cp -R "${build_dir}/Client/src/Model/." "${SCRIPTDIR}/src/Model/"
 rm -rf "${build_dir}"
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Abandoned_CartApi
+ * AbandonedCartApi
  *
  * @package  BigCommerce\Api\v3
  */
@@ -29,7 +29,7 @@ use \BigCommerce\Api\v3\ApiClient;
 use \BigCommerce\Api\v3\ApiException;
 use \BigCommerce\Api\v3\ObjectSerializer;
 
-class Abandoned_CartApi
+class AbandonedCartApi
 {
 
     /**
@@ -64,7 +64,7 @@ class Abandoned_CartApi
     *
     * @param \BigCommerce\Api\v3\ApiClient $apiClient set the API client
     *
-    * @return Abandoned_CartApi
+    * @return AbandonedCartApi
     */
     public function setApiClient(\BigCommerce\Api\v3\ApiClient $apiClient)
     {
@@ -73,7 +73,7 @@ class Abandoned_CartApi
     }
 
     /**
-     * Operation abandonedCartTokenGet
+     * Operation recoverCart
      * 
      *
      *
@@ -83,29 +83,29 @@ class Abandoned_CartApi
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
-    public function abandonedCartTokenGet($token, array $params = [])
+    public function recoverCart($token, array $params = [])
     {
-        list($response) = $this->abandonedCartTokenGetWithHttpInfo($token, $params);
+        list($response) = $this->recoverCartWithHttpInfo($token, $params);
         return $response;
     }
 
 
     /**
-     * Operation abandonedCartTokenGetWithHttpInfo
+     * Operation recoverCartWithHttpInfo
      *
-     * @see self::abandonedCartTokenGet()
+     * @see self::recoverCart()
      * @param string $token Unique token. (required)
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \BigCommerce\Api\v3\Model\AbandonedCartResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function abandonedCartTokenGetWithHttpInfo($token, array $params = [])
+    public function recoverCartWithHttpInfo($token, array $params = [])
     {
         
         // verify the required parameter 'token' is set
         if (!isset($token)) {
-            throw new \InvalidArgumentException('Missing the required parameter $token when calling abandonedCartTokenGet');
+            throw new \InvalidArgumentException('Missing the required parameter $token when calling recoverCart');
         }
         
 

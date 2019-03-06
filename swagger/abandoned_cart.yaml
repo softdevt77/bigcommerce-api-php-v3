@@ -5,7 +5,7 @@ info:
 host: "api.bigcommerce.com"
 basePath: "/stores/{store_id}/v3"
 tags:
-  - name: Cart
+  - name: AbandonedCart
     description: BigCommerce Abandoned Cart API Definition.
 consumes:
   - application/json
@@ -15,6 +15,7 @@ paths:
   /abandoned_cart/{token}:
     get:
       description: Returns abandoned cart id.
+      operationId: recover-cart
       parameters:
         - name: token
           in: path
@@ -23,7 +24,7 @@ paths:
           format: UUID
           description: Unique token.
       tags:
-        - Abandoned_Cart
+        - AbandonedCart
       responses:
         200:
           description: Returns Abandoned Cart Response Object.
