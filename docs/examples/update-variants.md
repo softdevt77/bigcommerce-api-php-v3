@@ -11,8 +11,8 @@ $config = new \BigCommerce\Api\v3\Configuration();
 $config->setHost( $api_url );
 $config->setClientId( $client_id );
 $config->setAccessToken( $access_token );
-$client = new \BigCommerce\Api\v3\ApiClient( $config );
-$catalog  = new \BigCommerce\Api\v3\Api\CatalogApi( $client );
+$client  = new \BigCommerce\Api\v3\ApiClient( $config );
+$catalog = new \BigCommerce\Api\v3\Api\CatalogApi( $client );
 
 $product_id = 101;
 
