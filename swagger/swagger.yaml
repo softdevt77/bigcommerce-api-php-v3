@@ -4790,6 +4790,9 @@ definitions:
           Whether or not this modifer is required or not at checkout.
         x-required:
           - post
+      sort_order:
+        type: integer
+        description: The order the modifiers display on the product detail page.
       config:
         $ref: "#/definitions/OptionConfig"
       option_values:
