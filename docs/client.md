@@ -14,7 +14,8 @@ $config->setClientSecret( $client_secret ); // not required for most requests
 ```
 
 You can find the required values in the BigCommerce admin when you create
-a new access token.
+a new access token, or create an application that [uses OAuth to request
+an access token](/docs/examples/oauth-token.md).
 
 With the configuration in hand, create an instance of the ApiClient object.
 
