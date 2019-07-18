@@ -39,3 +39,4 @@ $sites    = new \BigCommerce\Api\v3\Api\SitesApi( $client );
 * [Create a product with variants and a modifier](/docs/examples/create-product.md)
 * [Update variants for a product](/docs/examples/udate-variants.md)
 * [Add a product to a cart](/docs/examples/add-to-cart.md)
+* [Create a widget](/docs/examples/create-widget.md)
