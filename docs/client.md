@@ -38,3 +38,4 @@ $sites    = new \BigCommerce\Api\v3\Api\SitesApi( $client );
 * [Add a route to a site](/docs/examples/add-site-route.md)
 * [Create a product with variants and a modifier](/docs/examples/create-product.md)
 * [Update variants for a product](/docs/examples/udate-variants.md)
+* [Add a product to a cart](/docs/examples/add-to-cart.md)
