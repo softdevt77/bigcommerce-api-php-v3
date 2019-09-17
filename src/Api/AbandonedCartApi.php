@@ -110,7 +110,7 @@ class AbandonedCartApi
         
 
         // parse inputs
-        $resourcePath = "/abandoned_cart/{token}";
+        $resourcePath = "/abandoned_carts/{token}";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -155,7 +155,7 @@ class AbandonedCartApi
                 $httpBody,
                 $headerParams,
                 '\BigCommerce\Api\v3\Model\AbandonedCartResponse',
-                '/abandoned_cart/{token}'
+                '/abandoned_carts/{token}'
             );
             return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\AbandonedCartResponse', $httpHeader), $statusCode, $httpHeader];
 
