@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * InlineResponse200
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class InlineResponse200 implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,14 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'inline_response_200';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'data' => '\BigCommerce\Api\v3\Model\Checkout'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +54,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'data' => 'data'
     ];
 
     /**
@@ -64,8 +62,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'data' => 'setData'
     ];
 
     /**
@@ -73,8 +70,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'data' => 'getData'
     ];
 
     public static function attributeMap()
@@ -108,8 +104,7 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['data'] = array_key_exists('data', $data) ? $data['data'] : null;
     }
 
     /**
@@ -145,43 +140,22 @@ class AppliedDiscount implements ArrayAccess
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets data
+     * @return \BigCommerce\Api\v3\Model\Checkout
      */
-    public function getId()
+    public function getData()
     {
-        return $this->container['id'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets data
+     * @param \BigCommerce\Api\v3\Model\Checkout $data
      * @return $this
      */
-    public function setId($id)
+    public function setData($data)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets discounted_amount
-     * @return double
-     */
-    public function getDiscountedAmount()
-    {
-        return $this->container['discounted_amount'];
-    }
-
-    /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
-     * @return $this
-     */
-    public function setDiscountedAmount($discounted_amount)
-    {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['data'] = $data;
 
         return $this;
     }

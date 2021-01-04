@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * CreateConsignmentRequest
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class CreateConsignmentRequest implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,15 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'CreateConsignmentRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'shipping_address' => '\BigCommerce\Api\v3\Model\AddressProperties',
+        'line_items' => '\BigCommerce\Api\v3\Model\ConsignmentLineItem[]'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +55,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'shipping_address' => 'shipping_address',
+        'line_items' => 'line_items'
     ];
 
     /**
@@ -64,8 +64,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'shipping_address' => 'setShippingAddress',
+        'line_items' => 'setLineItems'
     ];
 
     /**
@@ -73,8 +73,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'shipping_address' => 'getShippingAddress',
+        'line_items' => 'getLineItems'
     ];
 
     public static function attributeMap()
@@ -108,8 +108,8 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['shipping_address'] = array_key_exists('shipping_address', $data) ? $data['shipping_address'] : null;
+        $this->container['line_items'] = array_key_exists('line_items', $data) ? $data['line_items'] : null;
     }
 
     /**
@@ -145,43 +145,43 @@ class AppliedDiscount implements ArrayAccess
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets shipping_address
+     * @return \BigCommerce\Api\v3\Model\AddressProperties
      */
-    public function getId()
+    public function getShippingAddress()
     {
-        return $this->container['id'];
+        return $this->container['shipping_address'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets shipping_address
+     * @param \BigCommerce\Api\v3\Model\AddressProperties $shipping_address
      * @return $this
      */
-    public function setId($id)
+    public function setShippingAddress($shipping_address)
     {
-        $this->container['id'] = $id;
+        $this->container['shipping_address'] = $shipping_address;
 
         return $this;
     }
 
     /**
-     * Gets discounted_amount
-     * @return double
+     * Gets line_items
+     * @return \BigCommerce\Api\v3\Model\ConsignmentLineItem[]
      */
-    public function getDiscountedAmount()
+    public function getLineItems()
     {
-        return $this->container['discounted_amount'];
+        return $this->container['line_items'];
     }
 
     /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
+     * Sets line_items
+     * @param \BigCommerce\Api\v3\Model\ConsignmentLineItem[] $line_items 
      * @return $this
      */
-    public function setDiscountedAmount($discounted_amount)
+    public function setLineItems($line_items)
     {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['line_items'] = $line_items;
 
         return $this;
     }

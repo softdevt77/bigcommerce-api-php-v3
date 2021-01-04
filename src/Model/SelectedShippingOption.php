@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * SelectedShippingOption
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class SelectedShippingOption implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,20 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'Selected Shipping Option';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'description' => 'string',
+        'id' => 'string',
+        'type' => 'string',
+        'image_url' => 'string',
+        'cost' => 'double',
+        'transit_time' => 'string',
+        'additional_description' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +60,13 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'description' => 'description',
         'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'type' => 'type',
+        'image_url' => 'image_url',
+        'cost' => 'cost',
+        'transit_time' => 'transit_time',
+        'additional_description' => 'additional_description'
     ];
 
     /**
@@ -64,8 +74,13 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'description' => 'setDescription',
         'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'type' => 'setType',
+        'image_url' => 'setImageUrl',
+        'cost' => 'setCost',
+        'transit_time' => 'setTransitTime',
+        'additional_description' => 'setAdditionalDescription'
     ];
 
     /**
@@ -73,8 +88,13 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'description' => 'getDescription',
         'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'type' => 'getType',
+        'image_url' => 'getImageUrl',
+        'cost' => 'getCost',
+        'transit_time' => 'getTransitTime',
+        'additional_description' => 'getAdditionalDescription'
     ];
 
     public static function attributeMap()
@@ -108,8 +128,13 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
+        $this->container['description'] = array_key_exists('description', $data) ? $data['description'] : null;
         $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['type'] = array_key_exists('type', $data) ? $data['type'] : null;
+        $this->container['image_url'] = array_key_exists('image_url', $data) ? $data['image_url'] : null;
+        $this->container['cost'] = array_key_exists('cost', $data) ? $data['cost'] : null;
+        $this->container['transit_time'] = array_key_exists('transit_time', $data) ? $data['transit_time'] : null;
+        $this->container['additional_description'] = array_key_exists('additional_description', $data) ? $data['additional_description'] : null;
     }
 
     /**
@@ -145,8 +170,29 @@ class AppliedDiscount implements ArrayAccess
 
 
     /**
+     * Gets description
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     * @param string $description 
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
      * Gets id
-     * @return double
+     * @return string
      */
     public function getId()
     {
@@ -155,7 +201,7 @@ class AppliedDiscount implements ArrayAccess
 
     /**
      * Sets id
-     * @param double $id ID of the applied discount.
+     * @param string $id 
      * @return $this
      */
     public function setId($id)
@@ -166,22 +212,106 @@ class AppliedDiscount implements ArrayAccess
     }
 
     /**
-     * Gets discounted_amount
-     * @return double
+     * Gets type
+     * @return string
      */
-    public function getDiscountedAmount()
+    public function getType()
     {
-        return $this->container['discounted_amount'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
+     * Sets type
+     * @param string $type Specified the type of shipping option. Flat rate, UPS, etc.,
      * @return $this
      */
-    public function setDiscountedAmount($discounted_amount)
+    public function setType($type)
     {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets image_url
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->container['image_url'];
+    }
+
+    /**
+     * Sets image_url
+     * @param string $image_url 
+     * @return $this
+     */
+    public function setImageUrl($image_url)
+    {
+        $this->container['image_url'] = $image_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets cost
+     * @return double
+     */
+    public function getCost()
+    {
+        return $this->container['cost'];
+    }
+
+    /**
+     * Sets cost
+     * @param double $cost 
+     * @return $this
+     */
+    public function setCost($cost)
+    {
+        $this->container['cost'] = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Gets transit_time
+     * @return string
+     */
+    public function getTransitTime()
+    {
+        return $this->container['transit_time'];
+    }
+
+    /**
+     * Sets transit_time
+     * @param string $transit_time An estimate of the arrival time.
+     * @return $this
+     */
+    public function setTransitTime($transit_time)
+    {
+        $this->container['transit_time'] = $transit_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_description
+     * @return string
+     */
+    public function getAdditionalDescription()
+    {
+        return $this->container['additional_description'];
+    }
+
+    /**
+     * Sets additional_description
+     * @param string $additional_description ReadOnly, Field used for Shipping Provider API.
+     * @return $this
+     */
+    public function setAdditionalDescription($additional_description)
+    {
+        $this->container['additional_description'] = $additional_description;
 
         return $this;
     }

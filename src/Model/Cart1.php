@@ -1,6 +1,6 @@
 <?php
 /**
- * Cart
+ * Cart1
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class Cart implements ArrayAccess
+class Cart1 implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,7 +34,7 @@ class Cart implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Cart';
+    protected static $swaggerModelName = 'Cart_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

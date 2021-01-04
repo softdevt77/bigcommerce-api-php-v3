@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * LineItem
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class LineItem implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,16 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'Line Item';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'physical_items' => '\BigCommerce\Api\v3\Model\ItemPhysical[]',
+        'digital_items' => '\BigCommerce\Api\v3\Model\ItemDigital[]',
+        'gift_certificates' => '\BigCommerce\Api\v3\Model\ItemGiftCertificate[]'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +56,9 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'physical_items' => 'physical_items',
+        'digital_items' => 'digital_items',
+        'gift_certificates' => 'gift_certificates'
     ];
 
     /**
@@ -64,8 +66,9 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'physical_items' => 'setPhysicalItems',
+        'digital_items' => 'setDigitalItems',
+        'gift_certificates' => 'setGiftCertificates'
     ];
 
     /**
@@ -73,8 +76,9 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'physical_items' => 'getPhysicalItems',
+        'digital_items' => 'getDigitalItems',
+        'gift_certificates' => 'getGiftCertificates'
     ];
 
     public static function attributeMap()
@@ -108,8 +112,9 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['physical_items'] = array_key_exists('physical_items', $data) ? $data['physical_items'] : null;
+        $this->container['digital_items'] = array_key_exists('digital_items', $data) ? $data['digital_items'] : null;
+        $this->container['gift_certificates'] = array_key_exists('gift_certificates', $data) ? $data['gift_certificates'] : null;
     }
 
     /**
@@ -129,6 +134,15 @@ class AppliedDiscount implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['physical_items'] === null) {
+            $invalid_properties[] = "'physical_items' can't be null";
+        }
+        if ($this->container['digital_items'] === null) {
+            $invalid_properties[] = "'digital_items' can't be null";
+        }
+        if ($this->container['gift_certificates'] === null) {
+            $invalid_properties[] = "'gift_certificates' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -140,48 +154,78 @@ class AppliedDiscount implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['physical_items'] === null) {
+            return false;
+        }
+        if ($this->container['digital_items'] === null) {
+            return false;
+        }
+        if ($this->container['gift_certificates'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets physical_items
+     * @return \BigCommerce\Api\v3\Model\ItemPhysical[]
      */
-    public function getId()
+    public function getPhysicalItems()
     {
-        return $this->container['id'];
+        return $this->container['physical_items'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets physical_items
+     * @param \BigCommerce\Api\v3\Model\ItemPhysical[] $physical_items 
      * @return $this
      */
-    public function setId($id)
+    public function setPhysicalItems($physical_items)
     {
-        $this->container['id'] = $id;
+        $this->container['physical_items'] = $physical_items;
 
         return $this;
     }
 
     /**
-     * Gets discounted_amount
-     * @return double
+     * Gets digital_items
+     * @return \BigCommerce\Api\v3\Model\ItemDigital[]
      */
-    public function getDiscountedAmount()
+    public function getDigitalItems()
     {
-        return $this->container['discounted_amount'];
+        return $this->container['digital_items'];
     }
 
     /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
+     * Sets digital_items
+     * @param \BigCommerce\Api\v3\Model\ItemDigital[] $digital_items 
      * @return $this
      */
-    public function setDiscountedAmount($discounted_amount)
+    public function setDigitalItems($digital_items)
     {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['digital_items'] = $digital_items;
+
+        return $this;
+    }
+
+    /**
+     * Gets gift_certificates
+     * @return \BigCommerce\Api\v3\Model\ItemGiftCertificate[]
+     */
+    public function getGiftCertificates()
+    {
+        return $this->container['gift_certificates'];
+    }
+
+    /**
+     * Sets gift_certificates
+     * @param \BigCommerce\Api\v3\Model\ItemGiftCertificate[] $gift_certificates 
+     * @return $this
+     */
+    public function setGiftCertificates($gift_certificates)
+    {
+        $this->container['gift_certificates'] = $gift_certificates;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * ErrorDetail1
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class ErrorDetail1 implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,17 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'ErrorDetail_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'status' => 'int',
+        'title' => 'string',
+        'type' => 'string',
+        'detail' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +57,10 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'status' => 'status',
+        'title' => 'title',
+        'type' => 'type',
+        'detail' => 'detail'
     ];
 
     /**
@@ -64,8 +68,10 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'status' => 'setStatus',
+        'title' => 'setTitle',
+        'type' => 'setType',
+        'detail' => 'setDetail'
     ];
 
     /**
@@ -73,8 +79,10 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'status' => 'getStatus',
+        'title' => 'getTitle',
+        'type' => 'getType',
+        'detail' => 'getDetail'
     ];
 
     public static function attributeMap()
@@ -108,8 +116,10 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['status'] = array_key_exists('status', $data) ? $data['status'] : null;
+        $this->container['title'] = array_key_exists('title', $data) ? $data['title'] : null;
+        $this->container['type'] = array_key_exists('type', $data) ? $data['type'] : null;
+        $this->container['detail'] = array_key_exists('detail', $data) ? $data['detail'] : null;
     }
 
     /**
@@ -145,43 +155,85 @@ class AppliedDiscount implements ArrayAccess
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets status
+     * @return int
      */
-    public function getId()
+    public function getStatus()
     {
-        return $this->container['id'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets status
+     * @param int $status 
      * @return $this
      */
-    public function setId($id)
+    public function setStatus($status)
     {
-        $this->container['id'] = $id;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets discounted_amount
-     * @return double
+     * Gets title
+     * @return string
      */
-    public function getDiscountedAmount()
+    public function getTitle()
     {
-        return $this->container['discounted_amount'];
+        return $this->container['title'];
     }
 
     /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
+     * Sets title
+     * @param string $title 
      * @return $this
      */
-    public function setDiscountedAmount($discounted_amount)
+    public function setTitle($title)
     {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     * @param string $type 
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets detail
+     * @return string
+     */
+    public function getDetail()
+    {
+        return $this->container['detail'];
+    }
+
+    /**
+     * Sets detail
+     * @param string $detail 
+     * @return $this
+     */
+    public function setDetail($detail)
+    {
+        $this->container['detail'] = $detail;
 
         return $this;
     }

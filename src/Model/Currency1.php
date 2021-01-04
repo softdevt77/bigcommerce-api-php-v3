@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * Currency1
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class Currency1 implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,14 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'Currency_1';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'code' => 'string'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +54,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'code' => 'code'
     ];
 
     /**
@@ -64,8 +62,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'code' => 'setCode'
     ];
 
     /**
@@ -73,8 +70,7 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'code' => 'getCode'
     ];
 
     public static function attributeMap()
@@ -108,8 +104,7 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['code'] = array_key_exists('code', $data) ? $data['code'] : null;
     }
 
     /**
@@ -145,43 +140,22 @@ class AppliedDiscount implements ArrayAccess
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets code
+     * @return string
      */
-    public function getId()
+    public function getCode()
     {
-        return $this->container['id'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets code
+     * @param string $code ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)
      * @return $this
      */
-    public function setId($id)
+    public function setCode($code)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets discounted_amount
-     * @return double
-     */
-    public function getDiscountedAmount()
-    {
-        return $this->container['discounted_amount'];
-    }
-
-    /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
-     * @return $this
-     */
-    public function setDiscountedAmount($discounted_amount)
-    {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['code'] = $code;
 
         return $this;
     }

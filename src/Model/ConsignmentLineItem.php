@@ -1,6 +1,6 @@
 <?php
 /**
- * AppliedDiscount
+ * ConsignmentLineItem
  *
  * @package  BigCommerce\Api\v3
  */
@@ -26,7 +26,7 @@ namespace BigCommerce\Api\v3\Model;
 
 use \ArrayAccess;
 
-class AppliedDiscount implements ArrayAccess
+class ConsignmentLineItem implements ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -34,15 +34,15 @@ class AppliedDiscount implements ArrayAccess
       * The original name of the model.
       * @var string
       */
-    protected static $swaggerModelName = 'Applied Discount';
+    protected static $swaggerModelName = 'Consignment Line Item';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'double',
-        'discounted_amount' => 'double'
+        'item_id' => 'string',
+        'quantity' => 'int'
     ];
 
     public static function swaggerTypes()
@@ -55,8 +55,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'discounted_amount' => 'discounted_amount'
+        'item_id' => 'item_id',
+        'quantity' => 'quantity'
     ];
 
     /**
@@ -64,8 +64,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'discounted_amount' => 'setDiscountedAmount'
+        'item_id' => 'setItemId',
+        'quantity' => 'setQuantity'
     ];
 
     /**
@@ -73,8 +73,8 @@ class AppliedDiscount implements ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'discounted_amount' => 'getDiscountedAmount'
+        'item_id' => 'getItemId',
+        'quantity' => 'getQuantity'
     ];
 
     public static function attributeMap()
@@ -108,8 +108,8 @@ class AppliedDiscount implements ArrayAccess
      */
     public function __construct(array $data = [])
     {
-        $this->container['id'] = array_key_exists('id', $data) ? $data['id'] : null;
-        $this->container['discounted_amount'] = array_key_exists('discounted_amount', $data) ? $data['discounted_amount'] : null;
+        $this->container['item_id'] = array_key_exists('item_id', $data) ? $data['item_id'] : null;
+        $this->container['quantity'] = array_key_exists('quantity', $data) ? $data['quantity'] : null;
     }
 
     /**
@@ -129,6 +129,12 @@ class AppliedDiscount implements ArrayAccess
     public function listInvalidProperties()
     {
         $invalid_properties = [];
+        if ($this->container['item_id'] === null) {
+            $invalid_properties[] = "'item_id' can't be null";
+        }
+        if ($this->container['quantity'] === null) {
+            $invalid_properties[] = "'quantity' can't be null";
+        }
         return $invalid_properties;
     }
 
@@ -140,48 +146,54 @@ class AppliedDiscount implements ArrayAccess
      */
     public function valid()
     {
+        if ($this->container['item_id'] === null) {
+            return false;
+        }
+        if ($this->container['quantity'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets id
-     * @return double
+     * Gets item_id
+     * @return string
      */
-    public function getId()
+    public function getItemId()
     {
-        return $this->container['id'];
+        return $this->container['item_id'];
     }
 
     /**
-     * Sets id
-     * @param double $id ID of the applied discount.
+     * Sets item_id
+     * @param string $item_id Corresponds to `line_items` > `id in Checkout response.
      * @return $this
      */
-    public function setId($id)
+    public function setItemId($item_id)
     {
-        $this->container['id'] = $id;
+        $this->container['item_id'] = $item_id;
 
         return $this;
     }
 
     /**
-     * Gets discounted_amount
-     * @return double
+     * Gets quantity
+     * @return int
      */
-    public function getDiscountedAmount()
+    public function getQuantity()
     {
-        return $this->container['discounted_amount'];
+        return $this->container['quantity'];
     }
 
     /**
-     * Sets discounted_amount
-     * @param double $discounted_amount The discounted amount applied within a given context.
+     * Sets quantity
+     * @param int $quantity 
      * @return $this
      */
-    public function setDiscountedAmount($discounted_amount)
+    public function setQuantity($quantity)
     {
-        $this->container['discounted_amount'] = $discounted_amount;
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
