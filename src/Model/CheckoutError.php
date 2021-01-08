@@ -41,7 +41,7 @@ class CheckoutError implements ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'errors' => '\BigCommerce\Api\v3\Model\ErrorDetail1[]'
+        'errors' => '\BigCommerce\Api\v3\Model\ErrorDetail[]'
     ];
 
     public static function swaggerTypes()
@@ -141,7 +141,7 @@ class CheckoutError implements ArrayAccess
 
     /**
      * Gets errors
-     * @return \BigCommerce\Api\v3\Model\ErrorDetail1[]
+     * @return \BigCommerce\Api\v3\Model\ErrorDetail[]
      */
     public function getErrors()
     {
@@ -150,7 +150,7 @@ class CheckoutError implements ArrayAccess
 
     /**
      * Sets errors
-     * @param \BigCommerce\Api\v3\Model\ErrorDetail1[] $errors 
+     * @param \BigCommerce\Api\v3\Model\ErrorDetail[] $errors 
      * @return $this
      */
     public function setErrors($errors)

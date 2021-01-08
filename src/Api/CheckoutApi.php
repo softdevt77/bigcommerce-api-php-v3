@@ -73,6 +73,287 @@ class CheckoutApi
     }
 
     /**
+     * Operation checkoutsBillingAddressByCheckoutIdAndAddressIdPut
+     * Update Checkout Billing Address
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param int $address_id  (required)
+     * @param \BigCommerce\Api\v3\Model\AddressProperties $body  (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsBillingAddressByCheckoutIdAndAddressIdPut($checkout_id, $address_id, $body, array $params = [])
+    {
+        list($response) = $this->checkoutsBillingAddressByCheckoutIdAndAddressIdPutWithHttpInfo($checkout_id, $address_id,  $body, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsBillingAddressByCheckoutIdAndAddressIdPutWithHttpInfo
+     *
+     * @see self::checkoutsBillingAddressByCheckoutIdAndAddressIdPut()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param int $address_id  (required)
+     * @param \BigCommerce\Api\v3\Model\AddressProperties $body  (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsBillingAddressByCheckoutIdAndAddressIdPutWithHttpInfo($checkout_id, $address_id,  $body, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsBillingAddressByCheckoutIdAndAddressIdPut');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'address_id' is set
+        if (!isset($address_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $address_id when calling checkoutsBillingAddressByCheckoutIdAndAddressIdPut');
+        }
+        
+        // verify the required parameter 'body' is set
+        if (!isset($body)) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling checkoutsBillingAddressByCheckoutIdAndAddressIdPut');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/billing-address/{addressId}";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // path params
+
+
+        if (isset($address_id)) {
+            $resourcePath = str_replace(
+                "{" . "addressId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($address_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+        $_tempBody = $body;
+        }
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/billing-address/{addressId}'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsBillingAddressByCheckoutIdPost
+     * Add Checkout Billing Address
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\AddressProperties $body Either email or countryCode is required. (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsBillingAddressByCheckoutIdPost($checkout_id, $body, array $params = [])
+    {
+        list($response) = $this->checkoutsBillingAddressByCheckoutIdPostWithHttpInfo($checkout_id,  $body, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsBillingAddressByCheckoutIdPostWithHttpInfo
+     *
+     * @see self::checkoutsBillingAddressByCheckoutIdPost()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\AddressProperties $body Either email or countryCode is required. (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsBillingAddressByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsBillingAddressByCheckoutIdPost');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'body' is set
+        if (!isset($body)) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling checkoutsBillingAddressByCheckoutIdPost');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/billing-address";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+        $_tempBody = $body;
+        }
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/billing-address'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
      * Operation checkoutsByCheckoutIdGet
      * Get a Checkout
      *
@@ -190,6 +471,816 @@ class CheckoutApi
             
                 case 404:
                 $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\CheckoutError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdAndConsignmentIdDelete
+     * Delete Checkout Consignment
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $consignment_id  (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdDelete($checkout_id, $consignment_id, array $params = [])
+    {
+        list($response) = $this->checkoutsConsignmentsByCheckoutIdAndConsignmentIdDeleteWithHttpInfo($checkout_id, $consignment_id, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdAndConsignmentIdDeleteWithHttpInfo
+     *
+     * @see self::checkoutsConsignmentsByCheckoutIdAndConsignmentIdDelete()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $consignment_id  (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdDeleteWithHttpInfo($checkout_id, $consignment_id, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsConsignmentsByCheckoutIdAndConsignmentIdDelete');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'consignment_id' is set
+        if (!isset($consignment_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $consignment_id when calling checkoutsConsignmentsByCheckoutIdAndConsignmentIdDelete');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/consignments/{consignmentId}";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // path params
+
+
+        if (isset($consignment_id)) {
+            $resourcePath = str_replace(
+                "{" . "consignmentId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($consignment_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/consignments/{consignmentId}'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut
+     * Update Checkout Consignment
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $consignment_id  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateConsignmentRequest $body  (required)
+     * @param array $params = []
+     *     - include string Must be included to get available shipping options (optional, default to consignments.available_shipping_options)
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut($checkout_id, $consignment_id, $body, array $params = [])
+    {
+        list($response) = $this->checkoutsConsignmentsByCheckoutIdAndConsignmentIdPutWithHttpInfo($checkout_id, $consignment_id,  $body, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdAndConsignmentIdPutWithHttpInfo
+     *
+     * @see self::checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $consignment_id  (required)
+     * @param \BigCommerce\Api\v3\Model\UpdateConsignmentRequest $body  (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdPutWithHttpInfo($checkout_id, $consignment_id,  $body, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'consignment_id' is set
+        if (!isset($consignment_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $consignment_id when calling checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut');
+        }
+        
+        // verify the required parameter 'body' is set
+        if (!isset($body)) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling checkoutsConsignmentsByCheckoutIdAndConsignmentIdPut');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/consignments/{consignmentId}";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // path params
+
+
+        if (isset($consignment_id)) {
+            $resourcePath = str_replace(
+                "{" . "consignmentId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($consignment_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+        $_tempBody = $body;
+        }
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'PUT',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/consignments/{consignmentId}'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdPost
+     * Add Consignment to Checkout
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\CreateConsignmentRequest $body  (required)
+     * @param array $params = []
+     *     - include string Must be included to get available shipping options (optional, default to consignments.available_shipping_options)
+     *     - include2 string  (optional)
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsConsignmentsByCheckoutIdPost($checkout_id, $body, array $params = [])
+    {
+        list($response) = $this->checkoutsConsignmentsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsConsignmentsByCheckoutIdPostWithHttpInfo
+     *
+     * @see self::checkoutsConsignmentsByCheckoutIdPost()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\CreateConsignmentRequest $body  (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsConsignmentsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsConsignmentsByCheckoutIdPost');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'body' is set
+        if (!isset($body)) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling checkoutsConsignmentsByCheckoutIdPost');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/consignments";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+        $_tempBody = $body;
+        }
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/consignments'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsCouponsByCheckoutIdAndCouponCodeDelete
+     * Delete Checkout Coupon
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $coupon_code The actual couponCode, not the couponId. (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsCouponsByCheckoutIdAndCouponCodeDelete($checkout_id, $coupon_code, array $params = [])
+    {
+        list($response) = $this->checkoutsCouponsByCheckoutIdAndCouponCodeDeleteWithHttpInfo($checkout_id, $coupon_code, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsCouponsByCheckoutIdAndCouponCodeDeleteWithHttpInfo
+     *
+     * @see self::checkoutsCouponsByCheckoutIdAndCouponCodeDelete()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param string $coupon_code The actual couponCode, not the couponId. (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsCouponsByCheckoutIdAndCouponCodeDeleteWithHttpInfo($checkout_id, $coupon_code, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsCouponsByCheckoutIdAndCouponCodeDelete');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'coupon_code' is set
+        if (!isset($coupon_code)) {
+            throw new \InvalidArgumentException('Missing the required parameter $coupon_code when calling checkoutsCouponsByCheckoutIdAndCouponCodeDelete');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/coupons/{couponCode}";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // path params
+
+
+        if (isset($coupon_code)) {
+            $resourcePath = str_replace(
+                "{" . "couponCode" . "}",
+                $this->apiClient->getSerializer()->toPathValue($coupon_code),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'DELETE',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/coupons/{couponCode}'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation checkoutsCouponsByCheckoutIdPost
+     * Add Coupon to Checkout
+     *
+     *
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\CouponCodeRequest $body  (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function checkoutsCouponsByCheckoutIdPost($checkout_id, $body, array $params = [])
+    {
+        list($response) = $this->checkoutsCouponsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation checkoutsCouponsByCheckoutIdPostWithHttpInfo
+     *
+     * @see self::checkoutsCouponsByCheckoutIdPost()
+     * @param string $checkout_id Id of the Checkout (required)
+     * @param \BigCommerce\Api\v3\Model\CouponCodeRequest $body  (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkoutsCouponsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
+    {
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling checkoutsCouponsByCheckoutIdPost');
+        }
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'body' is set
+        if (!isset($body)) {
+            throw new \InvalidArgumentException('Missing the required parameter $body when calling checkoutsCouponsByCheckoutIdPost');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/coupons";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+        $_tempBody = $body;
+        }
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '/checkouts/{checkoutId}/coupons'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            
+            }
+
+            throw $e;
+        }
+    }
+    /**
+     * Operation createAnOrder
+     * Create an Order
+     *
+     *
+     * @param string $checkout_id ID of the checkout (same as the cart ID). (required)
+     * @param array $params = []
+     * @return \BigCommerce\Api\v3\Model\InlineResponse2001
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     */
+    public function createAnOrder($checkout_id, array $params = [])
+    {
+        list($response) = $this->createAnOrderWithHttpInfo($checkout_id, $params);
+        return $response;
+    }
+
+
+    /**
+     * Operation createAnOrderWithHttpInfo
+     *
+     * @see self::createAnOrder()
+     * @param string $checkout_id ID of the checkout (same as the cart ID). (required)
+     * @param array $params = []
+     * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \BigCommerce\Api\v3\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createAnOrderWithHttpInfo($checkout_id, array $params = [])
+    {
+        
+        // verify the required parameter 'accept' is set
+        
+        // verify the required parameter 'content_type' is set
+        
+        // verify the required parameter 'checkout_id' is set
+        if (!isset($checkout_id)) {
+            throw new \InvalidArgumentException('Missing the required parameter $checkout_id when calling createAnOrder');
+        }
+        
+
+        // parse inputs
+        $resourcePath = "/checkouts/{checkoutId}/orders";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept(['application/json']);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(['application/json']);
+        // header params
+
+        if (isset($accept)) {
+            $headerParams['Accept'] = $this->apiClient->getSerializer()->toHeaderValue($accept);
+        }
+        // header params
+
+        if (isset($content_type)) {
+            $headerParams['Content-Type'] = $this->apiClient->getSerializer()->toHeaderValue($content_type);
+        }
+
+        // query params
+        foreach ( $params as $key => $param ) {
+            $queryParams[ $key ] = $this->apiClient->getSerializer()->toQueryValue( $param );
+        }
+
+        // path params
+
+
+        if (isset($checkout_id)) {
+            $resourcePath = str_replace(
+                "{" . "checkoutId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($checkout_id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-Auth-Token');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['X-Auth-Token'] = $apiKey;
+        }
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                '\BigCommerce\Api\v3\Model\InlineResponse2001',
+                '/checkouts/{checkoutId}/orders'
+            );
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader];
+
+         } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            
+                case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse2001', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             

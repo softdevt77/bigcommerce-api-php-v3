@@ -42,10 +42,10 @@ class Checkout implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
-        'cart' => '\BigCommerce\Api\v3\Model\Cart1',
+        'cart' => '\BigCommerce\Api\v3\Model\CartYamlDefinitionsCart',
         'billing_address' => 'object',
-        'consignments' => '\BigCommerce\Api\v3\Model\Consignment1[]',
-        'taxes' => '\BigCommerce\Api\v3\Model\Tax1[]',
+        'consignments' => '\BigCommerce\Api\v3\Model\Consignment[]',
+        'taxes' => '\BigCommerce\Api\v3\Model\Tax[]',
         'coupons' => '\BigCommerce\Api\v3\Model\AppliedCoupon[]',
         'order_id' => 'string',
         'shipping_cost_total_inc_tax' => 'double',
@@ -247,7 +247,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets cart
-     * @return \BigCommerce\Api\v3\Model\Cart1
+     * @return \BigCommerce\Api\v3\Model\CartYamlDefinitionsCart
      */
     public function getCart()
     {
@@ -256,7 +256,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets cart
-     * @param \BigCommerce\Api\v3\Model\Cart1 $cart
+     * @param \BigCommerce\Api\v3\Model\CartYamlDefinitionsCart $cart
      * @return $this
      */
     public function setCart($cart)
@@ -289,7 +289,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets consignments
-     * @return \BigCommerce\Api\v3\Model\Consignment1[]
+     * @return \BigCommerce\Api\v3\Model\Consignment[]
      */
     public function getConsignments()
     {
@@ -298,7 +298,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets consignments
-     * @param \BigCommerce\Api\v3\Model\Consignment1[] $consignments 
+     * @param \BigCommerce\Api\v3\Model\Consignment[] $consignments 
      * @return $this
      */
     public function setConsignments($consignments)
@@ -310,7 +310,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets taxes
-     * @return \BigCommerce\Api\v3\Model\Tax1[]
+     * @return \BigCommerce\Api\v3\Model\Tax[]
      */
     public function getTaxes()
     {
@@ -319,7 +319,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets taxes
-     * @param \BigCommerce\Api\v3\Model\Tax1[] $taxes 
+     * @param \BigCommerce\Api\v3\Model\Tax[] $taxes 
      * @return $this
      */
     public function setTaxes($taxes)

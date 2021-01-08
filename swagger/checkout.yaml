@@ -68,6 +68,7 @@ paths:
                 description: ''
                 type: array
                 items:
+                  $ref: '#/definitions/ErrorDetail'
                   title: ErrorDetail
                   type: object
                   properties:
@@ -99,7 +100,7 @@ paths:
         * email
         * country_code
       tags:
-        - Checkout Billing Address
+        - Checkout
       operationId: CheckoutsBillingAddressByCheckoutIdPost
       produces:
         - application/json
@@ -140,7 +141,7 @@ paths:
       description: Updates an existing billing address on *Checkout*.
       summary: Update Checkout Billing Address
       tags:
-        - Checkout Billing Address
+        - Checkout
       operationId: CheckoutsBillingAddressByCheckoutIdAndAddressIdPut
       produces:
         - application/json
@@ -184,7 +185,7 @@ paths:
       description: "Adds a new *Consignment* to *Checkout*.\n\n\nThere are two steps to add a new shipping address and shipping options with line items. \n* Add a new Consignment to Checkout.\n\t* Send a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n\t* As part of the request URL make sure to add `include=consignments.available_shipping_options` to return the available shipping options based on line items and shipping locations. This appended request will return `available_shipping_options` in the response.\n\n* [Update the Consignment](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n**Required Query**\n* consignments.available_shipping_options\n\n**Required Fields**\n* shipping_address\n* line_items"
       summary: Add Consignment to Checkout
       tags:
-        - Checkout Consignments
+        - Checkout
       operationId: CheckoutsConsignmentsByCheckoutIdPost
       produces:
         - application/json
@@ -234,7 +235,7 @@ paths:
       description: "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a [new Consignment](/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidpost) to Checkout.\n2. Update the Consignment with Shipping Options.\n\t1. Update each *Consignment* `shipping_option_id` (shipping address and line items) with the `available_shipping_option > id` from Step One. \n\n\n**Required Fields**\n* shipping_option_id"
       summary: Update Checkout Consignment
       tags:
-        - Checkout Consignments
+        - Checkout
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdPut
       produces:
         - application/json
@@ -292,7 +293,7 @@ paths:
         again.
       summary: Delete Checkout Consignment
       tags:
-        - Checkout Consignments
+        - Checkout
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdDelete
       produces:
         - application/json
@@ -334,7 +335,7 @@ paths:
         * coupon_code
       summary: Add Coupon to Checkout
       tags:
-        - Checkout Coupons
+        - Checkout
       operationId: CheckoutsCouponsByCheckoutIdPost
       produces:
         - application/json
@@ -374,7 +375,7 @@ paths:
       description: Deletes a *Coupon Code* from *Checkout*.
       summary: Delete Checkout Coupon
       tags:
-        - Checkout Coupons
+        - Checkout
       operationId: CheckoutsCouponsByCheckoutIdAndCouponCodeDelete
       produces:
         - application/json
@@ -448,7 +449,7 @@ paths:
           required: true
           description: ID of the checkout (same as the cart ID).
       tags:
-        - Checkout Orders
+        - Checkout
       operationId: createAnOrder
     parameters:
       - name: checkoutId
@@ -465,6 +466,7 @@ definitions:
         type: string
         format: uuid
       cart:
+        $ref: 'cart.yaml#/definitions/Cart'
         title: Cart
         type: object
         properties:
@@ -482,6 +484,7 @@ definitions:
               billing address
             type: string
           currency:
+            $ref: 'cart.yaml#/definitions/Currency'
             title: Currency
             type: object
             properties:
@@ -990,6 +993,7 @@ definitions:
         description: ''
         type: array
         items:
+          $ref: '#/definitions/Consignment'
           title: Consignment
           description: >-
             This allows us to have multiple shipping addresses. Where there is
@@ -1180,6 +1184,7 @@ definitions:
         description: ''
         type: array
         items:
+          $ref: '#/definitions/Tax'
           title: Tax
           type: object
           properties:
@@ -1265,6 +1270,7 @@ definitions:
           address
         type: string
       currency:
+        $ref: 'cart.yaml#/definitions/Currency'
         title: Currency
         type: object
         properties:
@@ -2819,6 +2825,7 @@ definitions:
         description: ''
         type: array
         items:
+          $ref: '#/definitions/ErrorDetail'
           title: ErrorDetail
           type: object
           properties:
@@ -3258,10 +3265,6 @@ securityDefinitions:
       [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
 tags:
   - name: Checkout
-  - name: Checkout Billing Address
-  - name: Checkout Consignments
-  - name: Checkout Coupons
-  - name: Checkout Orders
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
