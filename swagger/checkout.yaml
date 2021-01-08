@@ -57,7 +57,8 @@ paths:
             * `consignments.availableShippingOptions` - shipping options
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
         '404':
           description: When a given checkout ID is not found.
           schema:
@@ -128,7 +129,8 @@ paths:
             $ref: '#/definitions/AddressProperties'
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -173,7 +175,8 @@ paths:
             $ref: '#/definitions/AddressProperties'
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -223,7 +226,8 @@ paths:
         - $ref: '#/parameters/includeShippingOption'
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -276,7 +280,8 @@ paths:
           default: consignments.available_shipping_options
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'            
+          schema:
+            $ref: '#/responses/CheckoutResponse'            
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -319,7 +324,8 @@ paths:
           required: true
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -363,7 +369,8 @@ paths:
             $ref: '#/definitions/CouponCodeRequest'
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -402,7 +409,8 @@ paths:
           description: 'The actual couponCode, not the couponId.'
       responses:
         '200':
-          $ref: '#/responses/CheckoutResponse'
+          schema:
+            $ref: '#/responses/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -413,7 +421,8 @@ paths:
     post:
       responses:
         '200':
-          $ref: '#/responses/order_Resp'
+          schema:
+            $ref: '#/responses/order_Resp'
       summary: Create an Order
       description: >-
         Creates an order.

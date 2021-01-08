@@ -81,7 +81,7 @@ class CheckoutApi
      * @param int $address_id  (required)
      * @param \BigCommerce\Api\v3\Model\AddressProperties $body  (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -102,7 +102,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsBillingAddressByCheckoutIdAndAddressIdPutWithHttpInfo($checkout_id, $address_id,  $body, array $params = [])
     {
@@ -203,16 +203,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/billing-address/{addressId}'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -229,7 +229,7 @@ class CheckoutApi
      * @param string $checkout_id Id of the Checkout (required)
      * @param \BigCommerce\Api\v3\Model\AddressProperties $body Either email or countryCode is required. (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -249,7 +249,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsBillingAddressByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
     {
@@ -335,16 +335,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/billing-address'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -361,7 +361,7 @@ class CheckoutApi
      * @param string $checkout_id Id of the Checkout (required)
      * @param array $params = []
      *     - include string * &#x60;cart.lineItems.physicalItems.options&#x60; - physical options * &#x60;cart.lineItems.digitalItems.options&#x60; - digital options * &#x60;cart.lineItems.physicalItems.categoryNames&#x60; - physical categories * &#x60;cart.lineItems.digitalItems.categoryNames&#x60; - digital categories * &#x60;customer&#x60; - customer * &#x60;customer.customerGroup&#x60; - customer group * &#x60;payments&#x60; - payments * &#x60;promotions&#x60; - promotions * &#x60;consignments.availableShippingOptions&#x60; - shipping options (optional)
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -380,7 +380,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsByCheckoutIdGetWithHttpInfo($checkout_id, array $params = [])
     {
@@ -456,16 +456,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -487,7 +487,7 @@ class CheckoutApi
      * @param string $checkout_id Id of the Checkout (required)
      * @param string $consignment_id  (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -507,7 +507,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdDeleteWithHttpInfo($checkout_id, $consignment_id, array $params = [])
     {
@@ -598,16 +598,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/consignments/{consignmentId}'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -626,7 +626,7 @@ class CheckoutApi
      * @param \BigCommerce\Api\v3\Model\UpdateConsignmentRequest $body  (required)
      * @param array $params = []
      *     - include string Must be included to get available shipping options (optional, default to consignments.available_shipping_options)
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -647,7 +647,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsConsignmentsByCheckoutIdAndConsignmentIdPutWithHttpInfo($checkout_id, $consignment_id,  $body, array $params = [])
     {
@@ -748,16 +748,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/consignments/{consignmentId}'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -776,7 +776,7 @@ class CheckoutApi
      * @param array $params = []
      *     - include string Must be included to get available shipping options (optional, default to consignments.available_shipping_options)
      *     - include2 string  (optional)
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -796,7 +796,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsConsignmentsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
     {
@@ -882,16 +882,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/consignments'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -908,7 +908,7 @@ class CheckoutApi
      * @param string $checkout_id Id of the Checkout (required)
      * @param string $coupon_code The actual couponCode, not the couponId. (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -928,7 +928,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsCouponsByCheckoutIdAndCouponCodeDeleteWithHttpInfo($checkout_id, $coupon_code, array $params = [])
     {
@@ -1019,16 +1019,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/coupons/{couponCode}'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -1045,7 +1045,7 @@ class CheckoutApi
      * @param string $checkout_id Id of the Checkout (required)
      * @param \BigCommerce\Api\v3\Model\CouponCodeRequest $body  (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse200
+     * @return \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -1065,7 +1065,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse200, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesCheckoutResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkoutsCouponsByCheckoutIdPostWithHttpInfo($checkout_id,  $body, array $params = [])
     {
@@ -1151,16 +1151,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse200',
+                '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse',
                 '/checkouts/{checkoutId}/coupons'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse200', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesCheckoutResponse', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
@@ -1176,7 +1176,7 @@ class CheckoutApi
      *
      * @param string $checkout_id ID of the checkout (same as the cart ID). (required)
      * @param array $params = []
-     * @return \BigCommerce\Api\v3\Model\InlineResponse2001
+     * @return \BigCommerce\Api\v3\Model\ResponsesOrderResp
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -1195,7 +1195,7 @@ class CheckoutApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\InlineResponse2001, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\ResponsesOrderResp, HTTP status code, HTTP response headers (array of strings)
      */
     public function createAnOrderWithHttpInfo($checkout_id, array $params = [])
     {
@@ -1271,16 +1271,16 @@ class CheckoutApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\InlineResponse2001',
+                '\BigCommerce\Api\v3\Model\ResponsesOrderResp',
                 '/checkouts/{checkoutId}/orders'
             );
-            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\InlineResponse2001', $httpHeader), $statusCode, $httpHeader];
+            return [$this->apiClient->getSerializer()->deserialize($response, '\BigCommerce\Api\v3\Model\ResponsesOrderResp', $httpHeader), $statusCode, $httpHeader];
 
          } catch (ApiException $e) {
             switch ($e->getCode()) {
             
                 case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\InlineResponse2001', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\BigCommerce\Api\v3\Model\ResponsesOrderResp', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             
