@@ -42,7 +42,7 @@ class Checkout implements ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
-        'cart' => '\BigCommerce\Api\v3\Model\CartYamlDefinitionsCart',
+        'cart' => '\BigCommerce\Api\v3\Model\Cart',
         'billing_address' => 'object',
         'consignments' => '\BigCommerce\Api\v3\Model\Consignment[]',
         'taxes' => '\BigCommerce\Api\v3\Model\Tax[]',
@@ -247,7 +247,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Gets cart
-     * @return \BigCommerce\Api\v3\Model\CartYamlDefinitionsCart
+     * @return \BigCommerce\Api\v3\Model\Cart
      */
     public function getCart()
     {
@@ -256,7 +256,7 @@ class Checkout implements ArrayAccess
 
     /**
      * Sets cart
-     * @param \BigCommerce\Api\v3\Model\CartYamlDefinitionsCart $cart
+     * @param \BigCommerce\Api\v3\Model\Cart $cart
      * @return $this
      */
     public function setCart($cart)

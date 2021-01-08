@@ -475,7 +475,7 @@ definitions:
         type: string
         format: uuid
       cart:
-        $ref: 'cart.yaml#/definitions/Cart'
+        $ref: './cart.yaml#/definitions/Cart'
         title: Cart
         type: object
         properties:
