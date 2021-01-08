@@ -58,7 +58,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
         '404':
           description: When a given checkout ID is not found.
           schema:
@@ -130,7 +130,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -176,7 +176,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -227,7 +227,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -281,7 +281,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'            
+            $ref: '#/definitions/CheckoutResponse'            
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -325,7 +325,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -370,7 +370,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -410,7 +410,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/CheckoutResponse'
+            $ref: '#/definitions/CheckoutResponse'
       x-unitTests: []
       x-operation-settings:
         CollectParameters: false
@@ -422,7 +422,7 @@ paths:
       responses:
         '200':
           schema:
-            $ref: '#/responses/order_Resp'
+            $ref: '#/definitions/OrderResponse'
       summary: Create an Order
       description: >-
         Creates an order.
@@ -3185,6 +3185,25 @@ definitions:
         type: integer
         example: 75
         description: The order Id.
+  CheckoutResponse:
+    description: ''
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/Checkout'
+  OrderResponse:
+    description: ''
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/Order'
+      meta:
+        type: object
+    examples:
+      application/json:
+        data:
+          id: 75
+        meta: {}
 parameters:
   checkoutId:
     name: checkoutId
@@ -3281,25 +3300,3 @@ x-stoplight:
   docs:
     includeDownloadLink: true
     showModels: false
-responses:
-  CheckoutResponse:
-    description: ''
-    schema:
-      type: object
-      properties:
-        data:
-          $ref: '#/definitions/Checkout'
-  order_Resp:
-    description: ''
-    schema:
-      type: object
-      properties:
-        data:
-          $ref: '#/definitions/Order'
-        meta:
-          type: object
-    examples:
-      application/json:
-        data:
-          id: 75
-        meta: {}
