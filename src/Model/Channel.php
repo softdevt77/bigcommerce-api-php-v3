@@ -47,7 +47,11 @@ class Channel implements ArrayAccess
         'name' => 'string',
         'date_created' => 'string',
         'date_modified' => 'string',
-        'external_id' => 'string'
+        'external_id' => 'string',
+        'is_listable_from_ui' => 'bool',
+        'is_visible' => 'bool',
+        'status' => '\BigCommerce\Api\v3\Model\ChannelStatus',
+        'config_meta' => '\BigCommerce\Api\v3\Model\ChannelConfigMeta'
     ];
 
     public static function swaggerTypes()
@@ -66,7 +70,11 @@ class Channel implements ArrayAccess
         'name' => 'name',
         'date_created' => 'date_created',
         'date_modified' => 'date_modified',
-        'external_id' => 'external_id'
+        'external_id' => 'external_id',
+        'is_listable_from_ui' => 'is_listable_from_ui',
+        'is_visible' => 'is_visible',
+        'status' => 'status',
+        'config_meta' => 'config_meta'
     ];
 
     /**
@@ -80,7 +88,11 @@ class Channel implements ArrayAccess
         'name' => 'setName',
         'date_created' => 'setDateCreated',
         'date_modified' => 'setDateModified',
-        'external_id' => 'setExternalId'
+        'external_id' => 'setExternalId',
+        'is_listable_from_ui' => 'setIsListableFromUi',
+        'is_visible' => 'setIsVisible',
+        'status' => 'setStatus',
+        'config_meta' => 'setConfigMeta'
     ];
 
     /**
@@ -94,7 +106,11 @@ class Channel implements ArrayAccess
         'name' => 'getName',
         'date_created' => 'getDateCreated',
         'date_modified' => 'getDateModified',
-        'external_id' => 'getExternalId'
+        'external_id' => 'getExternalId',
+        'is_listable_from_ui' => 'getIsListableFromUi',
+        'is_visible' => 'getIsVisible',
+        'status' => 'getStatus',
+        'config_meta' => 'getConfigMeta'
     ];
 
     public static function attributeMap()
@@ -135,6 +151,10 @@ class Channel implements ArrayAccess
         $this->container['date_created'] = array_key_exists('date_created', $data) ? $data['date_created'] : null;
         $this->container['date_modified'] = array_key_exists('date_modified', $data) ? $data['date_modified'] : null;
         $this->container['external_id'] = array_key_exists('external_id', $data) ? $data['external_id'] : null;
+        $this->container['is_listable_from_ui'] = array_key_exists('is_listable_from_ui', $data) ? $data['is_listable_from_ui'] : null;
+        $this->container['is_visible'] = array_key_exists('is_visible', $data) ? $data['is_visible'] : null;
+        $this->container['status'] = array_key_exists('status', $data) ? $data['status'] : null;
+        $this->container['config_meta'] = array_key_exists('config_meta', $data) ? $data['config_meta'] : null;
     }
 
     /**
@@ -318,6 +338,90 @@ class Channel implements ArrayAccess
     public function setExternalId($external_id)
     {
         $this->container['external_id'] = $external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_listable_from_ui
+     * @return bool
+     */
+    public function getIsListableFromUi()
+    {
+        return $this->container['is_listable_from_ui'];
+    }
+
+    /**
+     * Sets is_listable_from_ui
+     * @param bool $is_listable_from_ui
+     * @return $this
+     */
+    public function setIsListableFromUi($is_listable_from_ui)
+    {
+        $this->container['is_listable_from_ui'] = $is_listable_from_ui;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_visible
+     * @return bool
+     */
+    public function getIsVisible()
+    {
+        return $this->container['is_visible'];
+    }
+
+    /**
+     * Sets is_visible
+     * @param bool $is_visible
+     * @return $this
+     */
+    public function setIsVisible($is_visible)
+    {
+        $this->container['is_visible'] = $is_visible;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     * @return \BigCommerce\Api\v3\Model\ChannelStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     * @param \BigCommerce\Api\v3\Model\ChannelStatus $status
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets config_meta
+     * @return \BigCommerce\Api\v3\Model\ChannelConfigMeta
+     */
+    public function getConfigMeta()
+    {
+        return $this->container['config_meta'];
+    }
+
+    /**
+     * Sets config_meta
+     * @param \BigCommerce\Api\v3\Model\ChannelConfigMeta $config_meta
+     * @return $this
+     */
+    public function setConfigMeta($config_meta)
+    {
+        $this->container['config_meta'] = $config_meta;
 
         return $this;
     }
