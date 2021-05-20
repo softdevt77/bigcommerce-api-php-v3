@@ -47,7 +47,7 @@ class UpdateChannelRequest implements ArrayAccess
         'external_id' => 'string',
         'is_listable_from_ui' => 'bool',
         'is_visible' => 'bool',
-        'status' => '\BigCommerce\Api\v3\Model\ChannelStatus',
+        'status' => 'string',
         'config_meta' => '\BigCommerce\Api\v3\Model\ChannelConfigMeta'
     ];
 
@@ -124,6 +124,13 @@ class UpdateChannelRequest implements ArrayAccess
     const PLATFORM_WORDPRESS = 'wordpress';
     const PLATFORM_DRUPAL = 'drupal';
     const PLATFORM_BIGCOMMERCE = 'bigcommerce';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_PRELAUNCH = 'prelaunch';
+    const STATUS_INACTIVE = 'inactive';
+    const STATUS_CONNECTED = 'connected';
+    const STATUS_DISCONNECTED = 'disconnected';
+    const STATUS_DELETED = 'deleted';
+    const STATUS_TERMINATED = 'terminated';
     
 
     
@@ -152,6 +159,23 @@ class UpdateChannelRequest implements ArrayAccess
             self::PLATFORM_WORDPRESS,
             self::PLATFORM_DRUPAL,
             self::PLATFORM_BIGCOMMERCE,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_PRELAUNCH,
+            self::STATUS_INACTIVE,
+            self::STATUS_CONNECTED,
+            self::STATUS_DISCONNECTED,
+            self::STATUS_DELETED,
+            self::STATUS_TERMINATED,
         ];
     }
     
@@ -212,6 +236,10 @@ class UpdateChannelRequest implements ArrayAccess
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
+        $allowed_values = ["active", "prelaunch", "inactive", "connected", "disconnected", "deleted", "terminated"];
+        if (!in_array($this->container['status'], $allowed_values)) {
+            $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
+        }
         return $invalid_properties;
     }
 
@@ -238,6 +266,10 @@ class UpdateChannelRequest implements ArrayAccess
             return false;
         }
         if ($this->container['name'] === null) {
+            return false;
+        }
+        $allowed_values = ["active", "prelaunch", "inactive", "connected", "disconnected", "deleted", "terminated"];
+        if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
         return true;
@@ -380,7 +412,7 @@ class UpdateChannelRequest implements ArrayAccess
 
     /**
      * Gets status
-     * @return \BigCommerce\Api\v3\Model\ChannelStatus
+     * @return string
      */
     public function getStatus()
     {
@@ -389,11 +421,15 @@ class UpdateChannelRequest implements ArrayAccess
 
     /**
      * Sets status
-     * @param \BigCommerce\Api\v3\Model\ChannelStatus $status
+     * @param string $status
      * @return $this
      */
     public function setStatus($status)
     {
+        $allowed_values = ['active', 'prelaunch', 'inactive', 'connected', 'disconnected', 'deleted', 'terminated'];
+        if (!is_null($status) && (!in_array($status, $allowed_values))) {
+            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'active', 'prelaunch', 'inactive', 'connected', 'disconnected', 'deleted', 'terminated'");
+        }
         $this->container['status'] = $status;
 
         return $this;
