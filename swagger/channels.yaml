@@ -378,9 +378,17 @@ definitions:
       is_visible:
         type: boolean
       status:
-          $ref: '#/definitions/ChannelStatus'
+        type: string
+        enum:
+          - active
+          - prelaunch
+          - inactive
+          - connected
+          - disconnected
+          - deleted
+          - terminated
       config_meta:
-          $ref: '#/definitions/ChannelConfigMeta'
+        $ref: '#/definitions/ChannelConfigMeta'
     required:
       - name
   ChannelConfigMeta:
