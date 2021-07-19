@@ -287,11 +287,12 @@ definitions:
       status:
         type: string
         enum:
-          - active
           - prelaunch
+          - active
           - inactive
           - connected
           - disconnected
+          - archived
           - deleted
           - terminated
       config_meta:
@@ -321,11 +322,12 @@ definitions:
       status:
         type: string
         enum:
-          - active
           - prelaunch
+          - active
           - inactive
           - connected
           - disconnected
+          - archived
           - deleted
           - terminated
       config_meta:
@@ -380,11 +382,12 @@ definitions:
       status:
         type: string
         enum:
-          - active
           - prelaunch
+          - active
           - inactive
           - connected
           - disconnected
+          - archived
           - deleted
           - terminated
       config_meta:

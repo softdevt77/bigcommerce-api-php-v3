@@ -124,11 +124,12 @@ class CreateChannelRequest implements ArrayAccess
     const PLATFORM_WORDPRESS = 'wordpress';
     const PLATFORM_DRUPAL = 'drupal';
     const PLATFORM_BIGCOMMERCE = 'bigcommerce';
-    const STATUS_ACTIVE = 'active';
     const STATUS_PRELAUNCH = 'prelaunch';
+    const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
     const STATUS_CONNECTED = 'connected';
     const STATUS_DISCONNECTED = 'disconnected';
+    const STATUS_ARCHIVED = 'archived';
     const STATUS_DELETED = 'deleted';
     const STATUS_TERMINATED = 'terminated';
     
@@ -169,11 +170,12 @@ class CreateChannelRequest implements ArrayAccess
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ACTIVE,
             self::STATUS_PRELAUNCH,
+            self::STATUS_ACTIVE,
             self::STATUS_INACTIVE,
             self::STATUS_CONNECTED,
             self::STATUS_DISCONNECTED,
+            self::STATUS_ARCHIVED,
             self::STATUS_DELETED,
             self::STATUS_TERMINATED,
         ];
@@ -236,7 +238,7 @@ class CreateChannelRequest implements ArrayAccess
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
-        $allowed_values = ["active", "prelaunch", "inactive", "connected", "disconnected", "deleted", "terminated"];
+        $allowed_values = ["prelaunch", "active", "inactive", "connected", "disconnected", "archived", "deleted", "terminated"];
         if (!in_array($this->container['status'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
         }
@@ -268,7 +270,7 @@ class CreateChannelRequest implements ArrayAccess
         if ($this->container['name'] === null) {
             return false;
         }
-        $allowed_values = ["active", "prelaunch", "inactive", "connected", "disconnected", "deleted", "terminated"];
+        $allowed_values = ["prelaunch", "active", "inactive", "connected", "disconnected", "archived", "deleted", "terminated"];
         if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
@@ -426,9 +428,9 @@ class CreateChannelRequest implements ArrayAccess
      */
     public function setStatus($status)
     {
-        $allowed_values = ['active', 'prelaunch', 'inactive', 'connected', 'disconnected', 'deleted', 'terminated'];
+        $allowed_values = ['prelaunch', 'active', 'inactive', 'connected', 'disconnected', 'archived', 'deleted', 'terminated'];
         if (!is_null($status) && (!in_array($status, $allowed_values))) {
-            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'active', 'prelaunch', 'inactive', 'connected', 'disconnected', 'deleted', 'terminated'");
+            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'prelaunch', 'active', 'inactive', 'connected', 'disconnected', 'archived', 'deleted', 'terminated'");
         }
         $this->container['status'] = $status;
 
