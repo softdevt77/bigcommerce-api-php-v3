@@ -28,7 +28,8 @@ use \ArrayAccess;
 
 class Category extends CategoryBase implements ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR   = null;
+    const MAX_NAME_LENGTH = 75;
 
     /**
       * The original name of the model.
@@ -354,8 +355,8 @@ class Category extends CategoryBase implements ArrayAccess
      */
     public function setName($name)
     {
-        if (strlen($name) > 75) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Category., must be smaller than or equal to 50.');
+        if (strlen($name) > self::MAX_NAME_LENGTH) {
+            throw new \InvalidArgumentException(sprintf('invalid length for $name when calling Category., must be smaller than or equal to %d.', self::MAX_NAME_LENGTH));
         }
         if (strlen($name) < 1) {
             throw new \InvalidArgumentException('invalid length for $name when calling Category., must be bigger than or equal to 1.');
