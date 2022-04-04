@@ -179,15 +179,6 @@ class CustomField extends CustomFieldBase implements ArrayAccess
     }
 
     /**
-     * Sanitize provided value
-     * @param $value
-     * @return array|string|string[]|null
-     */
-    private function sanitize( $value ) {
-        return preg_replace( '/ +/', ' ', preg_replace( '/[^\d\s\w\' ]/', ' ',  strip_tags( $value ) ) );
-    }
-
-    /**
      * Gets name
      * @return string
      */
@@ -230,9 +221,7 @@ class CustomField extends CustomFieldBase implements ArrayAccess
      */
     public function setValue($value)
     {
-        $value = $this->sanitize( $value );
-
-        if (strlen($value) > 250) {
+        if (strlen($value) > 280) {
             throw new \InvalidArgumentException('invalid length for $value when calling CustomField., must be smaller than or equal to 250.');
         }
         if (strlen($value) < 1) {
