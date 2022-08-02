@@ -812,7 +812,7 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Gets channel_ids
+     * Gets origin_channel_id
      * @return int
      */
     public function getOriginChannelId()
@@ -821,7 +821,7 @@ class Customer implements ArrayAccess
     }
 
     /**
-     * Sets channel_ids
+     * Sets origin_channel_id
      * @param int $channel_id
      * @return $this
      */
