@@ -80,7 +80,7 @@ class SettingsApi
      */
     public function getStorefrontProduct( $channel_id = 0 )
     {
-        list( $response ) = $this->getStorefrontHttpInfo( 'settings/store/product', $channel_id );
+        list( $response ) = $this->getStorefrontHttpInfo( '/settings/store/product', $channel_id );
 
         return $response;
     }
