@@ -80,7 +80,7 @@ class SettingsApi
      */
     public function getStorefrontProduct( $channel_id = 0 )
     {
-        list( $response ) = $this->getStorefrontHttpInfo( '/settings/store/product', $channel_id );
+        list( $response ) = $this->getStorefrontHttpInfo( '/settings/storefront/product', $channel_id );
 
         return $response;
     }
@@ -93,7 +93,7 @@ class SettingsApi
      */
     public function updateStorefrontProduct( $channel_id = 0, $data = [] )
     {
-        list( $response ) = $this->updateWithHttpInfo( '/settings/store/product', $channel_id, $data );
+        list( $response ) = $this->updateWithHttpInfo( '/settings/storefront/product', $channel_id, $data );
 
         return $response;
     }
@@ -105,7 +105,7 @@ class SettingsApi
      */
     public function getStorefrontStatus( $channel_id = 0 )
     {
-        list( $response ) = $this->getStorefrontHttpInfo( '/settings/store/status', $channel_id );
+        list( $response ) = $this->getStorefrontHttpInfo( '/settings/storefront/status', $channel_id );
 
         return $response;
     }
@@ -118,7 +118,7 @@ class SettingsApi
      */
     public function updateStorefrontStatus( $channel_id = 0, $data = [] )
     {
-        list( $response ) = $this->updateWithHttpInfo( '/settings/store/status', $channel_id, $data );
+        list( $response ) = $this->updateWithHttpInfo( '/settings/storefront/status', $channel_id, $data );
 
         return $response;
     }
@@ -156,7 +156,7 @@ class SettingsApi
         try {
             list( $response, $statusCode, $httpHeader ) = $this->apiClient->callApi(
                 $resourcePath,
-                'POST',
+                'GET',
                 $queryParams,
                 $httpBody,
                 $headerParams,
