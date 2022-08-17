@@ -31,18 +31,18 @@ class CurrencyAssignments implements ArrayAccess
     const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      * @var string
-      */
+     * The original name of the model.
+     * @var string
+     */
     protected static $swaggerModelName = 'CurrencyAssignments';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     * @var string[]
+     */
     protected static $swaggerTypes = [
         'channel_id'         => 'int',
-        'enabled_currencies' => 'array',
+        'enabled_currencies' => 'string[]',
         'default_currency'   => 'string',
     ];
 
@@ -184,7 +184,7 @@ class CurrencyAssignments implements ArrayAccess
      * @param array $enabled_currencies
      * @return $this
      */
-    public function setCode( $enabled_currencies )
+    public function setEnabledCurrencies( $enabled_currencies )
     {
         $this->container['enabled_currencies'] = $enabled_currencies;
 
@@ -206,7 +206,7 @@ class CurrencyAssignments implements ArrayAccess
      * @param string $code ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)
      * @return $this
      */
-    public function sedDefaultCurrency( $code )
+    public function setDefaultCurrency( $code )
     {
         $this->container['default_currency'] = $code;
 

@@ -3,7 +3,7 @@
 namespace BigCommerce\Api\v3\Api;
 
 use BigCommerce\Api\v3\ApiException;
-use BigCommerce\Api\v3\Model\CurrencyAssignments;
+use BigCommerce\Api\v3\Model\CurrencyAssignmentResponse;
 
 /**
  * CurrencyApi
@@ -61,7 +61,7 @@ class CurrencyApi
      *
      * @param int $channel_id The ID of a Channel that&#39;s available through GET /channels (required)
      * @param array $params = []
-     * @return CurrencyAssignments
+     * @return CurrencyAssignmentResponse
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      */
@@ -78,7 +78,7 @@ class CurrencyApi
      * @param array $params = []
      * @throws \BigCommerce\Api\v3\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \BigCommerce\Api\v3\Model\CurrencyAssignments, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BigCommerce\Api\v3\Model\CurrencyAssignmentResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getChannelCurrencyAssignmentsHttpInfo( $channel_id, array $params = [] )
     {
@@ -129,12 +129,12 @@ class CurrencyApi
                 $queryParams,
                 $httpBody,
                 $headerParams,
-                '\BigCommerce\Api\v3\Model\CurrencyAssignments',
+                '\BigCommerce\Api\v3\Model\CurrencyAssignmentResponse',
                 '/channels/{channelId}/currency-assignments'
             );
 
             return [
-                $this->apiClient->getSerializer()->deserialize( $response, '\BigCommerce\Api\v3\Model\CurrencyAssignments', $httpHeader ),
+                $this->apiClient->getSerializer()->deserialize( $response, '\BigCommerce\Api\v3\Model\CurrencyAssignmentResponse', $httpHeader ),
                 $statusCode,
                 $httpHeader
             ];
